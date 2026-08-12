@@ -18,6 +18,7 @@ const mime = {
   ".mp4": "video/mp4",
   ".webp": "image/webp",
   ".glb": "model/gltf-binary",
+  ".pdf": "application/pdf",
 };
 
 function sendFile(req, res, filePath) {
