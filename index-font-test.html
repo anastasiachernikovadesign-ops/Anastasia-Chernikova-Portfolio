@@ -1,0 +1,3704 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anastasia Chernikova Portfolio</title>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-size: 17px !important; line-height: 25px !important; }
+html, body {
+  width: 100%; background: #F1F1F1; color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px !important; line-height: 25px !important; font-weight: 400;
+  scrollbar-gutter: stable;
+}
+
+/* ── PAGE SYSTEM ── */
+
+/* Roboto Mono for home page content (excluding nav) */
+#page-home *:not(.site-nav):not(.site-nav *) {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+}
+.page:not(#page-home) .pd-hero *:not(.site-nav):not(.site-nav *),
+.page:not(#page-home) .proj-index-list,
+.page:not(#page-home) .proj-index-list *,
+.page:not(#page-home) .ph-tags,
+.page:not(#page-home) .ph-tags * {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+}
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── GLOBAL NAV (project pages) ── */
+.site-nav{
+  position: sticky; top: 0; z-index: 200;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  background: #F1F1F1;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+.nav-proj-list { list-style: none; margin: 0; padding: 0; }
+.nav-proj-list li a { color: #1A1A1A; text-decoration: none; display: block; padding: 0; transition: background 0.14s; line-height: 13px !important; }
+.nav-proj-list li a:hover { background: #FFFFFF; }
+.nav-proj-list li a.nav-current { background: #FFFFFF; }
+
+
+.proj-index-list { list-style: none; margin: 0; padding: 0; }
+.proj-index-list li { line-height: 25px !important; color: #1A1A1A; }
+.proj-index-list .work-year { font-family: 'Arial Narrow', Arial, sans-serif !important; font-style: normal; color: #AEAAA4; }
+.proj-index-current { background: #FFFFFF; padding: 0; display: block; }
+
+.nav-cell{ padding: 0; font-size: 13px; color: #1A1A1A; }
+.nav-cell:not(:last-child){ border-right: none; }
+.nav-name{ grid-column: 1 / span 3; padding-left: 28px; }
+.nav-home{ grid-column: 4 / span 2; padding-left: 28px; }
+.nav-projects-title{
+  margin: 0 0 48px;
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #1A1A1A;
+}
+.nav-next{ grid-column: 8 / span 3; padding-left: 28px; }
+.nav-skills{ grid-column: 6 / span 2; padding-left: 28px; }
+.site-nav a{
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: background 0.14s, color 0.14s;
+  padding: 0 4px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.site-nav a:hover{ background: #FFFFFF; color: #1A1A1A; opacity: 1; }
+.nav-next a{ color: #1A1A1A; }
+.site-nav-spacer {
+  height: 57px;
+  width: 100%;
+}
+/* ── HOME INFO BLOCK ── */
+.info-area {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  animation: fadeIn 0.4s ease both;
+}
+
+
+/* ── 10-COLUMN LAYOUT (home + nav + projects) ── */
+.info-area > .block-1 { grid-column: 1 / span 3; position: relative; }
+.info-area > .block-2 { grid-column: 4 / span 2; }
+.info-area > .block-3 { grid-column: 6 / span 2; }
+.info-area > .block-4 { grid-column: 8 / span 3; }
+
+/* nav cells: 3 / 2 / 2 / 3 */
+.site-nav > .nav-cell:nth-child(1) { grid-column: 1 / span 3; }
+.site-nav > .nav-cell:nth-child(2) { grid-column: 4 / span 2; }
+.site-nav > .nav-cell:nth-child(3) { grid-column: 6 / span 2; }
+.site-nav > .nav-cell:nth-child(4) { grid-column: 8 / span 3; }
+
+/* projects rows: align to 10 columns; last 3 columns intentionally empty */
+.block {
+  position: relative; padding: 28px 30px 40px 30px;
+  display: flex; flex-direction: column;
+}
+.block::before, .block::after {
+  font-family: 'EB Garamond', serif; font-size: 17px !important;
+  color: #BEBBB6; position: absolute; line-height: 25px !important; pointer-events: none;
+  z-index: 1;
+}
+.block::before { content: ''; }
+.block::after  { content: ''; }
+.block-mid::after { content: ''; }
+
+.bio-list, .work-list, .disc-list {
+  padding: 0;
+}
+
+.bio-name, .bio-edu, .bio-practice { font-size: 17px !important; line-height: 25px !important; }
+.bio-gap { margin-bottom: 25px !important; }
+.bio-list { list-style: none; margin: 0; padding: 0; }
+.bio-list .bio-name {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+}
+.mobile-block-heading {
+  display: none;
+}
+.block-1-spacer { flex: 1; min-height: 0; }
+.contacts-wrap { margin-top: 0; position: absolute; top: calc(50% + 40px); left: 28px; right: 0; padding: 0 0 12px 0; }
+
+.disc-list { list-style: none; }
+.disc-list li { font-size: 17px !important; line-height: 25px !important; text-transform: none;
+  letter-spacing: 0.01em; }
+
+.work-list { list-style: none; margin: 0; padding: 0; }
+.work-list li { font-size: 17px !important; line-height: 13px !important; cursor: pointer; transition: background 0.14s, color 0.14s; user-select: none; padding: 0; }
+.work-list li:hover { background: #FFFFFF; color: #1A1A1A; }
+.work-year { font-size: 17px !important; color: #AEAAA4; }
+
+.block-4 { padding: 0; min-height: auto; overflow: visible; }
+.block-4::before, .block-4::after { display: none; }
+.image-wrap { width: 100%; position: relative; }
+.image-dots { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 7px; z-index: 3; }
+.image-dots span { display: block; width: 5px; height: 5px; border-radius: 50%; background: #C0BBB4; }
+.image-dots span.on { background: #868280; }
+.photo-block {
+  display: block; width: 100%; aspect-ratio: 1 / 1.22;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 65% 28%, rgba(108,94,80,0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 68%, rgba(88,76,66,0.42) 0%, transparent 48%),
+    linear-gradient(148deg, #C6BFB7 0%, #A29890 42%, #8C857E 100%);
+}
+.image-caption { font-family: 'EB Garamond', serif; font-size: 17px !important; font-style: italic; color: #AEAAA4; margin-top: 8px; padding-left: 28px; padding-bottom: 16px; }
+.img-corner { font-family: 'EB Garamond', serif; font-size: 17px !important; color: #BEBBB6; position: absolute; line-height: 25px !important; pointer-events: none; }
+.img-tl { top: 14px; left: 14px; }
+.img-bl { bottom: 14px; left: 28px; }
+.img-br { bottom: 14px; right: 14px; }
+.img-outer { position: relative; }
+
+/* ── BADGE ── */
+.badge-container {
+  width: 100%;
+  aspect-ratio: 1 / 1.22;
+  position: relative;
+  background: transparent;
+  cursor: grab;
+  user-select: none;
+  overflow: visible;
+}
+.badge-container:active { cursor: grabbing; }
+.badge-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+}
+.badge-card {
+  position: absolute;
+  width: 225px;
+  background: #F1F1F1;
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.12);
+  overflow: hidden;
+  touch-action: none;
+  will-change: transform;
+  cursor: grab;
+}
+.badge-photo {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 60% 30%, rgba(108,94,80,0.5) 0%, transparent 55%),
+    linear-gradient(148deg, #C6BFB7 0%, #9A8E86 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px !important;
+  color: rgba(255,255,255,0.4);
+}
+.badge-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.badge-info {
+  padding: 18px 18px 13px;
+  border-top: 1px solid #E0DDD9;
+}
+.badge-name {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px !important;
+  font-weight: 400;
+  color: #1A1A1A;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  line-height: 25px !important;
+}
+.badge-title {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 17px !important;
+  color: #AEAAA4;
+  margin-top: 2px;
+  line-height: 25px !important;
+}
+.badge-clip {
+  width: 31px;
+  height: 22px;
+  background: #B8B4AE;
+  border-radius: 3px 3px 0 0;
+  margin: 0 auto;
+  position: relative;
+}
+.badge-clip::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 50%;
+  transform: translateX(-50%);
+  width: 13px; height: 9px;
+  border-radius: 50%;
+  background: #D4D0CB;
+}
+
+/* ── WATERMARK ── */
+.watermark-wrap {
+  position: relative; z-index: 1; width: 100%; overflow: hidden;
+  pointer-events: none; user-select: none; margin-top: 0;
+  height: clamp(220px, 36.6vw, 560px);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.7s ease 0.15s both;
+}
+.watermark-wrap svg { width: 100%; height: 100%; }
+
+/* ── PROJECTS SECTION (home) ── */
+.projects-section { width: 100%; animation: fadeIn 0.4s ease 0.1s both; }
+
+.project-row{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  border-top: none;
+cursor: pointer;
+  transition: background 0.2s;
+  padding-bottom: clamp(18px, 3.6vw, 56px); /* ~= imageHeight/10 */
+}
+.project-row:hover { }
+
+/* columns: 3 / 2 / 2 / 3 */
+.project-visual{
+  grid-column: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+}
+.project-text{
+  grid-column: 4 / span 2;
+  padding: 22px 20px 0 28px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border-right: none;
+}
+.project-tags-col{
+  grid-column: 6 / span 2;
+  padding: 22px 20px 0 28px;
+  align-self: stretch;
+  border-right: none;
+}
+.project-desc-col{
+  grid-column: 8 / span 3;
+  padding: 22px 28px 0 28px;
+  align-self: stretch;
+}
+
+.proj-img { display: block; width: 100%; aspect-ratio: 1/1.22; position: relative; overflow: hidden; }
+.proj-img-inner { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.project-row:hover .proj-img-inner { transform: none; }
+
+/* now description lives in the right 3 columns */
+.proj-caption { font-size: 17px !important; color: #1A1A1A; line-height: 25px !important; margin: 0; }
+.project-desc-col .proj-caption { margin-top: 0; }
+
+.project-tag-item { font-size: 17px !important; line-height: 25px !important; text-transform: none;
+  letter-spacing: 0.01em; display: block; }
+.project-title-line { font-size: 17px !important; font-weight: 400; color: #1A1A1A; line-height: 25px !important; }
+.project-title-year { color: #AEAAA4; }
+
+/* ── PROJECT DETAIL PAGE ── */
+:root{
+  --pd-cols: 10;
+  --pd-col: calc(100vw / var(--pd-cols));
+  --pd-thumb-w: calc(var(--pd-col) * 3);
+  --pd-h0: calc(var(--pd-thumb-w) * 1.22);
+  --pd-gap: calc(var(--pd-h0) / 10);
+  --pd-h1: calc(var(--pd-h0) * 1.1);
+  --pd-h12: calc(var(--pd-h0) * 1.2);
+  --pd-h22: calc(var(--pd-h0) * 2.2);
+  --pd-h21: calc(var(--pd-h0)*2 + var(--pd-gap));
+}
+
+.detail-page{
+  width: 100%;
+  animation: fadeIn 0.3s ease both;
+}
+.detail-sidebar{ display:none; }
+.detail-content{ width:100%; }
+.page:not(#page-home) .detail-content{ padding-bottom: 30px; }
+
+@media (max-width: 900px) {
+  .page:not(#page-home) .detail-content{ padding-bottom: 16px; }
+}
+
+.pd-section{ width:100%; }
+.pd-section + .pd-section{ margin-top: 0; }
+
+.pd-grid{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+
+.pd-span-1{ grid-column: span 1; }
+.pd-span-2{ grid-column: span 2; }
+.pd-span-3{ grid-column: span 3; }
+.pd-span-4{ grid-column: span 4; }
+.pd-span-5{ grid-column: span 5; }
+.pd-span-6{ grid-column: span 6; }
+.pd-span-7{ grid-column: span 7; }
+.pd-span-8{ grid-column: span 8; }
+.pd-span-9{ grid-column: span 9; }
+.pd-span-10{ grid-column: span 10; }
+
+.pd-img{
+  width:100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pd-h0{ height: var(--pd-h0); }
+.pd-h1{ height: var(--pd-h1); }
+.pd-h12{ height: var(--pd-h12); }
+.pd-h22{ height: var(--pd-h22); }
+.pd-h21 { height: var(--pd-h21); }
+
+.pd-text{
+  min-height: var(--pd-h0);
+  padding: 42px 30px;
+  display:flex;
+  flex-direction: column;
+}
+
+/* Typography reused from old detail page */
+.detail-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17px !important;
+  font-style: italic;
+  color: #AEAAA4;
+  margin-bottom: 30px;
+  display:block;
+}
+.detail-title{
+  font-size: 17px !important;
+  font-weight: 400;
+  line-height: 25px !important;
+  margin-bottom: 36px;
+}
+.detail-desc{
+  font-size: 17px !important;
+  line-height: 25px !important;
+  color:#1A1A1A;
+  margin-bottom: 27px;
+}
+.detail-meta{
+  margin-top: auto;
+  padding-top: 48px;
+  display:flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.detail-meta-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17px !important;
+  font-style: italic;
+  color:#AEAAA4;
+  display:block;
+  margin-bottom: 3px;
+}
+.detail-meta-val{
+  font-size: 17px !important;
+  letter-spacing: 0.01em;
+}
+
+.pd-hero .detail-desc{ max-width: 52ch; }
+
+@media (max-width: 900px){
+  :root{ --pd-thumb-w: 100vw; }
+  .pd-grid{ grid-template-columns: 1fr; }
+  .pd-span-1,.pd-span-2,.pd-span-3,.pd-span-4,.pd-span-5,.pd-span-6,.pd-span-7,.pd-span-8,.pd-span-9,.pd-span-10{
+    grid-column: 1 / -1;
+  }
+  .pd-text{ padding: 28px; min-height: auto; }
+}
+
+/* ── GRADIENTS ── */
+.pg1  { background-image: url('assets/leg.png'); background-size: cover; background-position: center; }
+.pg2  { background-image: url('assets/asset_01.jpg'); background-size: cover; background-position: center; }
+.pg3  { background-image: url('assets/hero%20hai.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: transparent; }
+.pg4  { background-image: url('assets/cover.png'); background-size: cover; background-position: center; }
+.pg5  { background: radial-gradient(ellipse at 50% 30%, rgba(72,72,88,.55) 0%, transparent 52%), radial-gradient(ellipse at 48% 72%, rgba(58,58,72,.38) 0%, transparent 48%), linear-gradient(148deg, #BEBEBC 0%, #9898B0 40%, #8888A0 100%); }
+.pg6  { background-image: url('assets/poster7.png'); background-size: cover; background-position: center; }
+.pg1b { background: radial-gradient(ellipse at 35% 40%, rgba(70,65,58,.55) 0%, transparent 55%), linear-gradient(140deg, #B8B2AA 0%, #908880 40%, #807870 100%); }
+.pg2b { background: radial-gradient(ellipse at 60% 38%, rgba(58,62,78,.5) 0%, transparent 52%), linear-gradient(160deg, #C0C4D8 0%, #A0A4C0 40%, #9094B0 100%); }
+.pg3b { background: radial-gradient(ellipse at 40% 32%, rgba(75,62,52,.52) 0%, transparent 52%), linear-gradient(140deg, #BCACA4 0%, #988880 40%, #887870 100%); }
+.pg4b { background: radial-gradient(ellipse at 55% 35%, rgba(55,68,58,.5) 0%, transparent 52%), linear-gradient(155deg, #C0CCC4 0%, #98B0A0 40%, #889890 100%); }
+.pg5b { background: radial-gradient(ellipse at 45% 32%, rgba(62,62,80,.5) 0%, transparent 52%), linear-gradient(150deg, #C8C8D4 0%, #A8A8C4 40%, #9898B4 100%); }
+.pg6b { background: radial-gradient(ellipse at 50% 38%, rgba(75,70,55,.5) 0%, transparent 52%), linear-gradient(148deg, #CCCAB0 0%, #AAAA90 40%, #9A9A80 100%); }
+.pg1c { background: radial-gradient(ellipse at 55% 45%, rgba(65,60,53,.45) 0%, transparent 50%), linear-gradient(165deg, #C8C2BA 0%, #A4A09A 40%, #94908A 100%); }
+.pg2c { background: radial-gradient(ellipse at 40% 42%, rgba(55,58,72,.45) 0%, transparent 50%), linear-gradient(145deg, #BCC0CE 0%, #9CA0B8 40%, #8C90A8 100%); }
+.pg3c { background: radial-gradient(ellipse at 52% 40%, rgba(72,58,48,.45) 0%, transparent 50%), linear-gradient(150deg, #C0B0A8 0%, #A09080 40%, #908070 100%); }
+.pg4c { background: radial-gradient(ellipse at 48% 38%, rgba(58,70,62,.45) 0%, transparent 50%), linear-gradient(155deg, #BCCAC0 0%, #9AACA0 40%, #8A9C90 100%); }
+
+.pg4d { background-image: linear-gradient(135deg, #d6d6d6 0%, #bfbfbf 100%); }
+.pg4e { background-image: linear-gradient(135deg, #d0d0d0 0%, #c2c2c2 100%); }
+.pg4f { background-image: linear-gradient(135deg, #d8d8d8 0%, #c8c8c8 100%); }
+.pg4g { background-image: linear-gradient(135deg, #d3d3d3 0%, #bebebe 100%); }
+.pg4h { background-image: linear-gradient(135deg, #bcbcbc 0%, #9f9f9f 100%); }
+.pg4i { background-image: linear-gradient(135deg, #cfcfcf 0%, #b3b3b3 100%); }
+.pg4j { background-image: linear-gradient(135deg, #cdcdcd 0%, #b0b0b0 100%); }
+.pg5c { background: radial-gradient(ellipse at 52% 42%, rgba(60,60,78,.45) 0%, transparent 50%), linear-gradient(148deg, #C4C4D0 0%, #A4A4C0 40%, #9494B0 100%); }
+.pg6c { background: radial-gradient(ellipse at 50% 40%, rgba(72,68,54,.45) 0%, transparent 50%), linear-gradient(150deg, #CAC8AE 0%, #A8A890 40%, #989880 100%); }
+
+/* ── GLOBAL UPPERCASE + ARIAL NARROW ── */
+* {
+  font-family: 'Arial Narrow', Arial, sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 17px !important;
+  line-height: 25px !important;
+}
+
+/* вертикальное растяжение убрано везде, кроме .site-nav (см. ниже) */
+/* вертикальное растяжение на главной убрано везде, кроме шапки */
+
+/* Навигация */
+.site-nav *, .nav-cell, .nav-name, .nav-home, .nav-next,
+.site-nav button {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 13px !important;
+  line-height: 25px !important;
+}
+
+/* ═══════════════════════════════════════
+   MOBILE ADAPTATION — max-width: 768px
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── GLOBAL ── */
+  html, body { overflow-x: hidden; cursor: auto !important; }
+  * { cursor: auto !important; }
+
+  /* ── HIDE CUSTOM CURSOR ── */
+  #custom-cursor { display: none !important; }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 16px !important;
+    flex-wrap: nowrap !important;
+  }
+  .nav-name {
+    grid-column: unset !important;
+    padding-left: 0 !important;
+    align-self: center !important;
+  }
+  .nav-home { display: none !important; }
+  .nav-skills { display: none !important; }
+  .nav-next {
+    grid-column: unset !important;
+    padding-left: 0 !important;
+    align-self: center !important;
+    margin-left: auto !important;
+  }
+  .nav-next button { padding: 0 !important; }
+
+  /* ── HOME INFO AREA ── */
+  .info-area {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .info-area > .block-1,
+  .info-area > .block-2,
+  .info-area > .block-3,
+  .info-area > .block-4 {
+    grid-column: unset !important;
+    width: 100% !important;
+  }
+  .block { padding: 20px 16px 24px !important; }
+  .info-area > .block-4 {
+    display: block !important;
+    order: 0 !important;
+    padding: 48px 0 28px 16px !important;
+  }
+  .info-area > .block-1 { order: 1 !important; }
+  .info-area > .block-2 { order: 2 !important; }
+  .info-area > .block-3 { order: 3 !important; }
+  .info-area > .block-4 > div {
+    width: 180px !important;
+    height: 255px !important;
+    background: transparent !important;
+    overflow: hidden !important;
+  }
+  .info-area > .block-4 img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    display: block !important;
+    mix-blend-mode: multiply !important;
+    opacity: 0.9 !important;
+  }
+
+  /* ── CONTACTS ── */
+  .contacts-wrap {
+    position: static !important;
+    top: unset !important; left: unset !important; right: unset !important;
+    margin-top: 100px !important;
+    padding: 0 !important; width: 100% !important;
+  }
+  .contacts-btn { width: 100% !important; }
+  .contacts-dropdown { margin-top: 12px !important; }
+
+  /* ── HOME PROJECTS — reorder and restyle ── */
+  .mobile-block-heading {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    color: #1A1A1A !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 15px !important;
+    line-height: 13px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: normal !important;
+    text-align: left !important;
+  }
+
+  .project-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 0 56px !important;
+    border-top: 1px solid #E0DDD9 !important;
+  }
+  /* Order: title → image → tags → desc */
+  .project-text { order: 1 !important; grid-column: unset !important; padding: 16px 16px 8px !important; width: 100% !important; }
+  .project-visual { order: 2 !important; width: 100% !important; }
+  .project-tags-col { order: 3 !important; display: none !important; }
+  .project-desc-col { order: 4 !important; grid-column: unset !important; padding: 8px 16px 0 !important; width: 100% !important; }
+
+  /* Title style like nav header */
+  .project-title-line {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    display: inline-block !important;
+    color: #1A1A1A !important;
+  }
+  .project-title-year {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 14px !important;
+    color: #AEAAA4 !important;
+  }
+
+  /* Image 3:4 */
+  .proj-img { aspect-ratio: 3/4 !important; width: 100% !important; }
+  .proj-img-inner { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Description */
+  .proj-caption { font-size: 11px !important; line-height: 17px !important; text-transform: none !important; }
+
+
+  /* 2. Replace nav-next link text with NEXT PROJECT */
+  .nav-next a .mobile-next-en { display: inline !important; }
+  .nav-next a .mobile-next-ru { display: none; }
+  .nav-next a [data-en]:not(.mobile-next-en):not(.mobile-next-ru) { display: none !important; }
+
+
+  .project-title-line { font-size: 13px !important; }
+  .page { overflow-x: hidden !important; }
+
+}
+
+* { cursor: none !important; }
+#custom-cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #1A1A1A;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── LINK FIXES ── */
+.proj-link{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+  padding: 0;
+  display: block;
+  line-height: 13px !important;
+}
+.proj-link:hover{ background: #FFFFFF; color: #1A1A1A; }
+
+/* ── BADGE: RESTORE ORIGINAL LOOK ── */
+.badge-photo{ font-size:22px !important; }
+.badge-name{
+  font-size:14px !important;
+  text-transform: uppercase !important;
+}
+.badge-title{ font-size:12px !important; }
+
+
+
+/* ── PROJECT HERO (match home grid) ── */
+.pd-hero-grid .pd-text{
+  min-height: var(--pd-h0);
+  padding: 28px 30px 40px 30px;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: start;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.pd-hero-desc {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+.pd-hero-desc .ph-body {
+  margin: 0 0 25px 0;
+}
+.pd-hero-desc .ph-body:last-child {
+  margin-bottom: 0;
+}
+.pd-hero-title {
+  grid-column: 4 / span 2;
+  grid-row: 1;
+  align-self: start;
+}
+.pd-hero-tags {
+  grid-column: 6 / span 2;
+  grid-row: 1;
+}
+.pd-hero-img {
+  grid-column: 8 / span 3;
+  grid-row: 1;
+}
+.pd-hero-title .ph-title{
+  font-size: 17px !important;
+  line-height: 25px !important;
+}
+.ph-tags{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ph-tags li{
+  font-size: 17px !important;
+  line-height: 25px !important;
+  letter-spacing: 0.01em;
+}
+.pd-hero{ padding: 0; margin: 0; }
+
+/* ── HERO GRIDS: text aligns to top, images stretch to full row height ── */
+.pd-hero-grid .pd-text,
+.pd-master-grid .pd-text {
+  align-self: start;
+  padding-top: 28px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.pd-hero-grid .pd-img.pd-hero-img {
+  align-self: stretch;
+}
+.pd-master-grid .pd-frame {
+  align-self: start;
+}
+
+/* ───────── frames (placeholders) ───────── */
+.pd-frame{
+  background:#cfcfcf;
+  border: none;
+  box-sizing:border-box;
+  height: var(--pd-h0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 24px;
+  overflow:hidden;
+}
+.pd-frame-label{
+  font-style: italic;
+  font-size: 17px !important;
+  line-height: 25px !important;
+  letter-spacing: -0.01em;
+  color:#111;
+}
+.pd-h1-2{ height: calc(var(--pd-h0) * 1.2); }
+
+.pd-follow-top{
+  grid-template-rows: var(--pd-h0) var(--pd-h1);
+}
+.pd-follow-top .pd-frame{ height:100%; }
+
+
+/* === pd-gray placeholder === */
+.pd-gray { background: #cfcfcf; }
+
+/* spacer и старые фреймы — убираем (больше не нужны) */
+#page-p2 .pf-spacer { display: none; }
+#page-p2 .pd-frames-grid { display: none; }
+#page-p2 .pd-frame,
+#page-p2 .pd-gray,
+#page-p2 .project-media,
+#page-p2 .project-media img,
+#page-p2 .project-media video,
+#page-p2 .mobile-first-project-image,
+#page-p2 .mobile-first-project-image img {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+#page-p2 .pd-frame::before,
+#page-p2 .pd-frame::after,
+#page-p2 .project-media::before,
+#page-p2 .project-media::after {
+  content: none !important;
+  display: none !important;
+}
+#page-p2 .mobile-first-project-image > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+#page-p2 .p2-fmehero {
+  aspect-ratio: 4 / 3;
+  height: auto !important;
+}
+#page-p2 .p2-fmehero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+#page-p2 .pf-4 img {
+  transform: scale(1.02);
+  transform-origin: center center;
+}
+#page-p2 .pf-7 img {
+  transform: scale(1.02);
+  transform-origin: center center;
+}
+
+.cover-f5vid{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+.cover-f5vid::-webkit-media-controls{display:none !important;}
+/* Навигация — Times New Roman (должно быть последним чтобы перебить * Arial Narrow) */
+.site-nav *, .nav-cell, .nav-name, .nav-home, .nav-next,
+.site-nav button {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 25px !important;
+  transform: scaleY(1.25);
+  transform-origin: top left;
+  display: inline-block;
+}
+
+.site-nav a {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 13px !important;
+  transform: scaleY(1.25);
+  transform-origin: top left;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 4px;
+  text-decoration: none;
+  color: #1A1A1A;
+  transition: background 0.14s, color 0.14s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+#nav-about-proj {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 13px !important;
+  transform: scaleY(1.25) !important;
+  transform-origin: top left !important;
+  display: inline-block !important;
+  padding: 0 !important;
+  letter-spacing: 0.06em !important;
+}
+#page-home .work-year, .work-year {
+  font-family: 'Times New Roman', Times, serif !important;
+  display: inline-block !important;
+}
+#skills-label-en, #skills-label-ru {
+  font-family: 'Times New Roman', Times, serif !important;
+  transform: scaleY(1.25) !important;
+  transform-origin: top left !important;
+}
+#nav-about { pointer-events: none; }
+#skills-label-en { display: inline-block; pointer-events: none; }
+#skills-label-ru { display: none; pointer-events: none; }
+
+/* Contacts */
+.contacts-wrap {
+  position: absolute;
+  top: calc(50% + 40px);
+  left: 0;
+  right: 0;
+  padding: 0 0 12px 28px;
+  background: rgba(248, 248, 248, 0);
+  transition: background-color 2.2s cubic-bezier(.19, 1, .22, 1), padding 2.2s cubic-bezier(.19, 1, .22, 1);
+}
+.contacts-wrap.open {
+  background: rgba(248, 248, 248, 1);
+  padding: 0 0 16px 28px;
+}
+.contacts-wrap.opening {
+  transition-duration: 3s;
+}
+.contacts-wrap.closing {
+  background: rgba(248, 248, 248, 0);
+  padding: 0 0 12px 28px;
+}
+.contacts-btn {
+  background: none; border: none; padding: 0;
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important; line-height: 13px !important;
+  color: #1A1A1A; text-transform: uppercase;
+  cursor: none; display: block; width: 100%;
+  box-sizing: border-box;
+  transition: background 0.14s;
+  text-align: left;
+}
+.contacts-btn:hover { background: #FFFFFF; }
+.contacts-dropdown {
+  display: block;
+  margin-top: 43px;
+  color: #1A1A1A;
+  width: 100%;
+  max-height: 0;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: max-height 2.2s cubic-bezier(.19, 1, .22, 1);
+}
+.contacts-dropdown.open {
+  max-height: 120px;
+}
+.contacts-dropdown.opening {
+  transition-duration: 3s;
+}
+.contacts-row {
+  padding: 0;
+  cursor: none;
+  transition: background 0.14s;
+  line-height: 13px !important;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contacts-row:hover { background: #FFFFFF; }
+.contacts-row a {
+  color: #1A1A1A !important;
+  text-decoration: none !important;
+  display: block;
+  width: 100%;
+}
+.email-copy-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #1A1A1A !important;
+  font: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  cursor: none;
+  text-align: left;
+}
+.contacts-dropdown,
+.contacts-dropdown *,
+.contacts-row,
+.contacts-row * {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+  text-transform: none !important;
+}
+/* Fix work-list inside nav-home on project pages ONLY */
+.site-nav .nav-home .work-list { list-style: none; margin: 0; padding: 0; }
+.site-nav .nav-home .work-list li,
+.site-nav .nav-home .work-list li a,
+.site-nav .nav-home .work-list li a span {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 13px !important;
+  transform: scaleY(1.25) !important;
+  transform-origin: top left !important;
+  display: block !important;
+  text-transform: uppercase !important;
+  color: #1A1A1A !important;
+  text-decoration: none !important;
+}
+.site-nav .nav-home .work-list li a .work-year {
+  display: inline-block !important;
+  transform: scaleY(1.12) !important;
+  font-size: 14px !important;
+  color: #AEAAA4 !important;
+}
+.site-nav .nav-home .work-list li a:hover { background: #FFFFFF !important; }
+
+/* Project-page content list */
+.page:not(#page-home) .pd-hero-title .proj-index-list {
+  display: block !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list li {
+  display: block !important;
+  height: 19px !important;
+  min-height: 19px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 19px !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list .proj-link,
+.page:not(#page-home) .pd-hero-title .proj-index-list li > span {
+  display: inline-block !important;
+  height: 19px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: uppercase !important;
+  color: #1A1A1A !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list .proj-link {
+  width: 100% !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list li > span {
+  width: auto !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list .proj-link:hover,
+.page:not(#page-home) .pd-hero-title .proj-index-list .proj-index-current,
+.page:not(#page-home) .pd-hero-title .proj-index-list .proj-index-current .proj-link {
+  background: #FFFFFF !important;
+}
+
+.page:not(#page-home) .pd-hero-title .proj-index-list .work-year {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  vertical-align: baseline !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: uppercase !important;
+  transform: none !important;
+  color: #AEAAA4 !important;
+}
+
+/* Exact alignment fix: PROJECTS starts at the same x-position on every page */
+.page:not(#page-home) .site-nav .nav-home > a,
+.page:not(#page-home) .site-nav .nav-home > .nav-projects-title {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 768px) {
+  #page-home .project-row .project-text {
+    padding-bottom: 20px !important;
+  }
+
+  #page-home .project-row .proj-link,
+  #page-home .project-row .project-title-line {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 15px !important;
+    line-height: 13px !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    color: #1A1A1A !important;
+  }
+
+  #page-home .project-row .project-title-line {
+    display: inline-block !important;
+  }
+
+  #page-home .project-row .project-title-line span {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+    text-transform: inherit !important;
+    transform: none !important;
+    color: inherit !important;
+  }
+
+  #page-home .project-row .proj-caption {
+    text-transform: none !important;
+  }
+}
+
+.bio-list .bio-name,
+.bio-list .bio-edu,
+.bio-list .bio-practice,
+.project-desc-col .proj-caption,
+.pd-hero-desc .ph-body,
+.contacts-dropdown,
+.contacts-dropdown * {
+  text-transform: none !important;
+}
+
+@media (max-width: 900px) {
+  #page-home .mobile-block-heading {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    color: #1A1A1A !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+
+  #page-home .mobile-block-heading .mobile-heading-text {
+    display: inline-block !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 15.5px !important;
+    line-height: 13px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: normal !important;
+    color: #1A1A1A !important;
+  }
+
+  #page-home .mobile-section-btn {
+    appearance: none !important;
+    border: none !important;
+    background: none !important;
+    cursor: none !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: background 0.14s !important;
+  }
+
+  #page-home .mobile-section-btn:hover,
+  #page-home .mobile-section-btn:focus,
+  #page-home .mobile-section-btn:active {
+    background: transparent !important;
+    outline: none !important;
+  }
+}
+
+/* Ordinary prose should stay in normal sentence case */
+#page-home .bio-list .bio-name,
+#page-home .project-desc-col .proj-caption,
+.page:not(#page-home) .pd-hero-desc .ph-body {
+  text-transform: none !important;
+}
+
+.site-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+}
+
+.page:not(#page-home) .mobile-first-project-image {
+  aspect-ratio: 3 / 4 !important;
+  height: auto !important;
+  overflow: hidden !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.page:not(#page-home) .mobile-first-project-image > img,
+.page:not(#page-home) .mobile-first-project-image .pd-img,
+.page:not(#page-home) .mobile-first-project-image .pd-img > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-y: auto !important;
+  }
+
+  .page,
+  .page.active {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    overflow: visible !important;
+  }
+
+  .site-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99999 !important;
+    background: #F1F1F1 !important;
+  }
+
+  .page > .site-nav + .info-area,
+  .page > .site-nav + .detail-page {
+    margin-top: 49px !important;
+  }
+
+  #page-home .contacts-wrap {
+    margin-top: 64px !important;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .page:not(#page-home) .pd-hero .pd-master-grid,
+  .page:not(#page-home) .pd-hero .pd-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .page:not(#page-home) .pd-hero .pd-master-grid > *,
+  .page:not(#page-home) .pd-hero .pd-hero-grid > * {
+    width: 100% !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .page:not(#page-home) .pd-hero .pd-text {
+    padding: 0 16px !important;
+  }
+
+  .page:not(#page-home) .pd-hero .mobile-first-project-image { order: 0 !important; margin-bottom: 30px !important; }
+  .page:not(#page-home) .pd-hero .pd-hero-title { order: 1 !important; margin-bottom: 30px !important; }
+  .page:not(#page-home) .pd-hero .pd-hero-desc { order: 2 !important; margin-bottom: 30px !important; }
+  .page:not(#page-home) .pd-hero .pd-hero-tags { order: 3 !important; margin-bottom: 30px !important; }
+  .page:not(#page-home) .pd-hero .project-media { order: 4 !important; }
+  #page-p2.page .pd-hero .pd-master-grid > div[style*="grid-column: 8 / span 3"][style*="grid-row: 3"] {
+    display: none !important;
+  }
+  #page-p2.page .pd-hero .pd-master-grid > .project-media:not(.mobile-first-project-image):not(.pf-3):not(.pf-4):not(.pf-5):not(.pf-6):not(.pf-7):not(.pf-8):not(.pf-9):not(.pf-10) {
+    order: 4 !important;
+  }
+  #page-p2.page .pd-hero .p2-method-copy {
+    order: 5 !important;
+    margin: 30px 0 !important;
+  }
+  #page-p2.page .pd-hero .pf-3 { order: 6 !important; }
+  #page-p2.page .pd-hero .p2-visual-language-copy {
+    order: 7 !important;
+    margin: 30px 0 !important;
+  }
+  #page-p2.page .pd-hero .pf-4 { order: 8 !important; }
+  #page-p2.page .pd-hero .pf-5 { order: 9 !important; }
+  #page-p2.page .pd-hero .pf-6 { order: 10 !important; }
+  #page-p2.page .pd-hero .p2-reader-trace-copy {
+    order: 11 !important;
+    margin: 30px 0 !important;
+  }
+  #page-p2.page .pd-hero .pf-7 { order: 12 !important; }
+  #page-p2.page .pd-hero .pf-8 { order: 13 !important; }
+  #page-p2.page .pd-hero .pf-9 { order: 14 !important; }
+  #page-p2.page .pd-hero .pf-10 { order: 15 !important; }
+  #page-p2.page .pd-hero .p2-conclusion-copy {
+    order: 16 !important;
+    margin: 30px 0 !important;
+  }
+
+  #page-p5.page .pd-hero .cover-logo-frame { order: 4 !important; }
+  #page-p5.page .pd-hero .cover-logo-desc { order: 5 !important; }
+  #page-p5.page .pd-hero .cover-after-logo-media { order: 6 !important; }
+  #page-p5.page .pd-hero .cover-stone-desc { order: 7 !important; }
+  #page-p5.page .pd-hero .cover-pair-01 { order: 8 !important; }
+  #page-p5.page .pd-hero .cover-wordmark-desc { order: 9 !important; }
+  #page-p5.page .pd-hero .cover-silver-shoes { order: 8 !important; }
+  #page-p5.page .pd-hero .cover-branding-video { order: 9 !important; }
+  #page-p5.page .pd-hero .cover-colors-media { order: 10 !important; }
+  #page-p5.page .pd-hero .cover-labels-media { order: 11 !important; }
+  #page-p5.page .pd-hero .cover-system-desc { order: 12 !important; }
+  #page-p5.page .pd-hero .cover-street-posters-media { order: 13 !important; }
+  #page-p5.page .pd-hero .cover-packaging-desc { order: 14 !important; }
+  #page-p5.page .pd-hero .cover-pack-media { order: 15 !important; }
+  #page-p5.page .pd-hero .cover-pair-02 { order: 16 !important; }
+  #page-p5.page .pd-hero .cover-unboxing-desc { order: 17 !important; }
+  #page-p5.page .pd-hero .cover-pair-03 { order: 18 !important; }
+  #page-p5.page .pd-hero .cover-result-desc { order: 19 !important; }
+  #page-p7.page .pd-hero .p7-intro-media { order: 4 !important; }
+  #page-p7.page .pd-hero .p7-approach-copy { order: 5 !important; }
+  #page-p7.page .pd-hero .p7-billboard-media { order: 6 !important; }
+  #page-p7.page .pd-hero .p7-absurdity-copy { order: 7 !important; }
+  #page-p7.page .pd-hero .p7-couch-model { order: 8 !important; }
+  #page-p7.page .pd-hero .p7-posterwall-media { order: 9 !important; }
+  #page-p7.page .pd-hero .p7-pair-01 { order: 10 !important; }
+  #page-p7.page .pd-hero .p7-redposter-media { order: 11 !important; }
+  #page-p7.page .pd-hero .p7-immersive-copy { order: 12 !important; }
+  #page-p7.page .pd-hero .p7-avtorwall-media { order: 13 !important; }
+  #page-p7.page .pd-hero .p7-artistwoman-media { order: 14 !important; }
+  #page-p7.page .pd-hero .p7-artists-copy { order: 15 !important; }
+  #page-p7.page .pd-hero .p7-pair-02 { order: 16 !important; }
+  #page-p7.page .pd-hero .p7-conclusion-copy { order: 17 !important; }
+}
+
+/* Ordinary project text system.
+   pd-text stays for hero/title/tag blocks only. */
+.page:not(#page-home) .project-copy,
+.page:not(#page-home) .pd-hero .project-copy {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 17.5px !important;
+  text-transform: none !important;
+  transform: none !important;
+  display: block !important;
+  align-self: start !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 45px 30px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* Align hero description's top edge with the hero title/tags columns
+   (those use pd-hero-grid's 28px padding-top, not project-copy's 45px).
+   Desktop only — on mobile the hero stacks vertically, so this alignment
+   is irrelevant and the standard mobile padding should stand. */
+@media (min-width: 901px) {
+  .page:not(#page-home) .pd-hero .pd-hero-desc.project-copy {
+    padding-top: 28px !important;
+  }
+}
+
+.page:not(#page-home) .project-copy,
+.page:not(#page-home) .project-copy *,
+.page:not(#page-home) .pd-hero .project-copy,
+.page:not(#page-home) .pd-hero .project-copy * {
+  text-transform: none !important;
+  transform: none !important;
+}
+
+.page:not(#page-home) .project-copy .ph-body,
+.page:not(#page-home) .pd-hero .project-copy .ph-body {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 17.5px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 17.5px 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.page:not(#page-home) .project-copy .ph-body *,
+.page:not(#page-home) .pd-hero .project-copy .ph-body * {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 17.5px !important;
+}
+
+.page:not(#page-home) .project-copy .ph-body:last-child,
+.page:not(#page-home) .pd-hero .project-copy .ph-body:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .page:not(#page-home) .project-copy,
+  .page:not(#page-home) .pd-hero .project-copy {
+    padding: 30px 16px !important;
+  }
+}
+
+.page:not(#page-home) .pd-hero .project-copy.project-copy,
+.page:not(#page-home) .pd-hero .project-copy.project-copy * {
+  font-size: 13px !important;
+  line-height: 17.5px !important;
+  text-transform: none !important;
+  transform: none !important;
+}
+
+/* Ordinary project media system.
+   Hero / first project images keep their own separate rules. */
+.page:not(#page-home) .pd-grid,
+.page:not(#page-home) .pd-master-grid,
+.page:not(#page-home) .pd-hero-grid {
+  row-gap: 30px !important;
+}
+
+.page:not(#page-home) .pd-section + .pd-section {
+  margin-top: 30px !important;
+}
+
+.page:not(#page-home) .project-media,
+.page:not(#page-home) .pd-hero .pd-master-grid > .project-media,
+.page:not(#page-home) .pd-hero .pd-hero-grid > .project-media {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  display: block !important;
+  align-self: start !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.page:not(#page-home) .project-media img,
+.page:not(#page-home) .project-media video {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+.page:not(#page-home) .project-media-pair {
+  display: grid !important;
+  grid-template-columns: repeat(10, 1fr) !important;
+  column-gap: 0 !important;
+  row-gap: 0 !important;
+  width: 100% !important;
+  height: var(--pair-height, auto) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.page:not(#page-home) .project-media-pair .project-media {
+  height: 100% !important;
+  align-self: stretch !important;
+}
+
+.page:not(#page-home) .project-media-pair > .project-media:nth-child(1) {
+  grid-column: 1 / span 5 !important;
+}
+
+.page:not(#page-home) .project-media-pair > .project-media:nth-child(2) {
+  grid-column: 6 / span 5 !important;
+}
+
+.page:not(#page-home) .project-media-pair img,
+.page:not(#page-home) .project-media-pair video {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+#page-p5 .cover-pair-01 {
+  --pair-height: 32.2vw;
+}
+
+@media (min-width: 901px) {
+  #page-p4.page .p4-pair-01 {
+    aspect-ratio: 1153 / 648 !important;
+    height: auto !important;
+  }
+}
+
+#page-p4.page .p4-pair-01 > .project-media:nth-child(1) {
+  grid-column: 1 / span 6 !important;
+}
+
+#page-p4.page .p4-pair-01 > .project-media:nth-child(2) {
+  grid-column: 7 / span 4 !important;
+}
+
+#page-p4.page .p4-sofa-media {
+  aspect-ratio: 1964 / 1309 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-sofa-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-pair-02 > .project-media:nth-child(1) {
+  grid-column: 1 / span 6 !important;
+}
+
+#page-p4.page .p4-pair-02 > .project-media:nth-child(2) {
+  grid-column: 7 / span 4 !important;
+}
+
+@media (min-width: 901px) {
+  #page-p4.page .p4-pair-02 {
+    aspect-ratio: 2895 / 1543 !important;
+    height: auto !important;
+  }
+}
+
+#page-p4.page .p4-name-media {
+  height: var(--pd-h0);
+}
+
+#page-p4.page .p4-name-media video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-billboard-media {
+  aspect-ratio: 2291 / 1232 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-billboard-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-pair-03 > .project-media:nth-child(1) {
+  grid-column: 1 / span 6 !important;
+}
+
+#page-p4.page .p4-pair-03 > .project-media:nth-child(2) {
+  grid-column: 7 / span 4 !important;
+}
+
+@media (min-width: 901px) {
+  #page-p4.page .p4-pair-03 {
+    aspect-ratio: 965 / 514 !important;
+    height: auto !important;
+  }
+}
+
+#page-p4.page .p4-tshirts-media {
+  aspect-ratio: 1453 / 1083 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-flowers-media {
+  aspect-ratio: 1672 / 941 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-flowers-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-books-media {
+  aspect-ratio: 1660 / 1163 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-books-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-coasters-media {
+  aspect-ratio: 1672 / 941 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-coasters-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-doorsticker-media {
+  aspect-ratio: 2262 / 3017 !important;
+  height: auto !important;
+}
+
+#page-p4.page .p4-doorsticker-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-pair-06 > .project-media:nth-child(1) {
+  grid-column: 1 / span 5 !important;
+}
+
+#page-p4.page .p4-pair-06 > .project-media:nth-child(2) {
+  grid-column: 6 / span 5 !important;
+}
+
+@media (min-width: 901px) {
+  #page-p4.page .p4-pair-06 {
+    aspect-ratio: 1600 / 1067 !important;
+    height: auto !important;
+  }
+}
+
+#page-p4.page .p4-tshirts-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-pair-04 > .project-media:nth-child(1) {
+  grid-column: 1 / span 5 !important;
+}
+
+#page-p4.page .p4-pair-04 > .project-media:nth-child(2) {
+  grid-column: 6 / span 5 !important;
+}
+
+@media (min-width: 901px) {
+  #page-p4.page .p4-pair-04 {
+    aspect-ratio: 2304 / 863 !important;
+    height: auto !important;
+  }
+}
+
+#page-p4.page .p4-outcome-media {
+  height: var(--pd-h0);
+}
+
+#page-p4.page .p4-outcome-media video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p4.page .p4-format-media {
+  height: var(--pd-h0);
+}
+
+#page-p4.page .p4-format-media video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p5 .mobile-first-project-image .cover-img {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+#page-p5.page .cover-logo-video {
+  transform: scale(1.03);
+  transform-origin: center;
+}
+
+#page-p5.page .cover-colors-video {
+  transform: scale(1.02);
+  transform-origin: center;
+}
+
+#page-p5 .pd-hero .mobile-first-project-image {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+#page-p7 .p7-couch-model {
+  aspect-ratio: 4 / 3 !important;
+}
+
+#page-p7.page .p7-pair-01 .project-media {
+  aspect-ratio: 4 / 3 !important;
+  height: auto !important;
+}
+
+#page-p7.page .p7-pair-01 .project-media img,
+#page-p7.page .p7-pair-01 .project-media video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p7.page .p7-redposter-media {
+  aspect-ratio: 4 / 3 !important;
+  height: auto !important;
+}
+
+#page-p7.page .p7-redposter-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p7.page .p7-artistwoman-media {
+  aspect-ratio: 3 / 4 !important;
+  height: auto !important;
+}
+
+#page-p7.page .p7-artistwoman-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p7.page .p7-pair-02 .project-media {
+  aspect-ratio: 3 / 4 !important;
+  height: auto !important;
+}
+
+#page-p7.page .p7-pair-02 .project-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p7.page .p7-absurdity-copy strong,
+#page-p7.page .p7-immersive-copy strong,
+#page-p7.page .p7-artists-copy strong {
+  font-weight: 500 !important;
+}
+
+#page-p2.page .p2-visual-language-copy strong,
+#page-p2.page .p2-reader-trace-copy strong {
+  font-weight: 500 !important;
+}
+
+#page-p4.page .p4-context-copy strong,
+#page-p4.page .p4-challenge-copy strong,
+#page-p4.page .p4-name-copy strong,
+#page-p4.page .p4-longread-copy strong,
+#page-p4.page .p4-mediaenv-copy strong,
+#page-p4.page .p4-scalability-copy strong,
+#page-p4.page .p4-outcome-copy strong {
+  font-weight: 500 !important;
+}
+
+#page-p3.page .p3-ribbon-media {
+  aspect-ratio: 4 / 3 !important;
+}
+
+#page-p3.page .p3-ribbon-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p3.page .p3-vritme-media {
+  aspect-ratio: 4 / 3 !important;
+}
+
+#page-p3.page .p3-vritme-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p3.page .p3-pair-01 .project-media {
+  aspect-ratio: 4 / 3 !important;
+  height: auto !important;
+}
+
+#page-p3.page .p3-pair-01 .project-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-p3.page .p3-karabin-media {
+  aspect-ratio: 4 / 3 !important;
+}
+
+#page-p2.page .pf-3 {
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+}
+
+#page-p3.page .p3-karabin-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+@media (max-width: 900px) {
+  #page-p3.page .p3-gif-media {
+    aspect-ratio: 9.6 / 1 !important;
+    height: auto !important;
+  }
+
+  #page-p3.page .p3-gif-media video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #page-p3.page .p3-ribbon-media,
+  #page-p3.page .p3-calendar-copy,
+  #page-p3.page .p3-karabin-media,
+  #page-p3.page .p3-tension-copy,
+  #page-p4.page .p4-name-copy,
+  #page-p4.page .p4-name-media,
+  #page-p4.page .p4-format-media,
+  #page-p4.page .p4-format-copy,
+  #page-p4.page .p4-doorsticker-media,
+  #page-p4.page .p4-scalability-copy,
+  #page-p4.page .p4-outcome-media,
+  #page-p4.page .p4-outcome-copy {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .page:not(#page-home) .pd-grid,
+  .page:not(#page-home) .pd-master-grid,
+  .page:not(#page-home) .pd-hero-grid {
+    row-gap: 16px !important;
+  }
+
+  .page:not(#page-home) .pd-hero .pd-master-grid,
+  .page:not(#page-home) .pd-hero .pd-hero-grid {
+    gap: 16px !important;
+    row-gap: 16px !important;
+  }
+
+  .page:not(#page-home) .pd-section + .pd-section {
+    margin-top: 16px !important;
+  }
+
+  .page:not(#page-home) .project-media-pair {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    height: auto !important;
+  }
+
+  .page:not(#page-home) .project-media-pair .project-media {
+    height: auto !important;
+  }
+
+  .page:not(#page-home) .project-media-pair img,
+  .page:not(#page-home) .project-media-pair video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div id="custom-cursor"></div>
+<script>
+(function(){
+  const c = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', e => {
+    c.style.left = e.clientX + 'px';
+    c.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => { c.style.width='7px'; c.style.height='7px'; });
+  document.addEventListener('mouseup', () => { c.style.width='12px'; c.style.height='12px'; });
+})();
+</script>
+<!-- ══════ HOME ══════ -->
+<div class="page active" id="page-home">
+<nav class="site-nav">
+  <div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+  <div class="nav-home"><a href="#" onclick="return false;" id="nav-about" style="padding:0;">PROJECTS</a></div>
+  <div class="nav-skills" style="grid-column: 6 / span 2;"><span id="skills-label-en" style="display:inline-block;transform:scaleY(1.25);transform-origin:top left;font-family:'Times New Roman',Times,serif!important;">CORE SKILLS</span><span id="skills-label-ru" style="display:none;transform:scaleY(1.25);transform-origin:top left;font-family:'Times New Roman',Times,serif!important;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+  <div class="nav-next"><button id="lang-ru" onclick="setLang('ru')" style="background:#FFFFFF;color:#1A1A1A;border:none;padding:0 4px;font-family:'Times New Roman',Times,serif;font-size:14px!important;letter-spacing:0.06em;text-transform:uppercase!important;cursor:none;line-height:13px!important;">РУ</button><button id="lang-en" onclick="setLang('en')" style="background:transparent;color:#1A1A1A;border:none;padding:0 4px;font-family:'Times New Roman',Times,serif;font-size:14px!important;letter-spacing:0.06em;text-transform:uppercase!important;cursor:none;line-height:13px!important;">EN</button></div>
+</nav>
+<div class="info-area">
+<div class="block block-1">
+<div class="bio-list" id="bio-en">
+<p class="bio-name bio-gap">Hi, my name is Anastasia Chernikova, and I'm a graphic designer based in Yerevan. Specializing in identity, print, digital media, and AI visuals, with a particular focus on projects in music, fashion, exhibitions, cultural events, and film.</p>
+<p class="bio-name">Passionate about projects where design becomes a visible part of the visual world.</p>
+</div>
+<ul class="bio-list" id="bio-ru" style="display:none;">
+<li class="bio-name">Привет. Меня зовут Анастасия Черникова</li>
+<li class="bio-name">и&nbsp;я графический дизайнер.</li>
+<li class="bio-name">Сейчас базируюсь в&nbsp;Ереване.</li>
+<li class="bio-name">Работаю с&nbsp;айдентикой, печатными медиа,</li>
+<li class="bio-name">цифровыми форматами и&nbsp;AI-визуалом.</li>
+<li class="bio-name">Особенно интересуют проекты в&nbsp;сферах</li>
+<li class="bio-name">музыки, моды, выставок, культурных</li>
+<li class="bio-name bio-gap">событий и&nbsp;кино.</li>
+<li class="bio-name">Люблю проекты, где дизайн становится</li>
+<li class="bio-name">заметной частью визуального мира.</li>
+</ul>
+<div class="block-1-spacer"></div>
+<div class="contacts-wrap">
+  <button class="contacts-btn" onclick="toggleContacts()" id="contacts-btn">
+    <span id="contacts-label-en">CONTACTS</span><span id="contacts-label-ru" style="display:none;">КОНТАКТЫ</span>
+  </button>
+  <div class="contacts-dropdown" id="contacts-dropdown">
+    <div class="contacts-row"><a href="https://instagram.com/29x65" target="_blank" rel="noopener">IG.&nbsp;&nbsp;&nbsp;@29x65</a></div>
+    <div class="contacts-row"><a href="https://t.me/stacy29x65" target="_blank" rel="noopener">TG.&nbsp;&nbsp;&nbsp;@stacy29x65</a></div>
+    <div class="contacts-row" onclick="copyEmail()" style="cursor:none;">E.&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="email-copy-btn">harmstanta@gmail.com</button></div>
+  </div>
+</div>
+</div>
+<div class="block block-2">
+<button type="button" class="mobile-block-heading mobile-section-btn"><span class="mobile-heading-text" data-ru="ПРОЕКТЫ" data-en="PROJECTS">PROJECTS</span></button>
+<ul class="work-list" id="worklist-ru">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ</a></li>
+<li><a class="proj-link" href="#" onclick="return false;">МУЗЕЙ Х. ТЕР-АРУТЮНЯНА</a></li>
+</ul>
+<ul class="work-list" id="worklist-en" style="display:none;">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul>
+</div>
+<div class="block block-3 block-mid">
+<button type="button" class="mobile-block-heading mobile-section-btn"><span class="mobile-heading-text" data-ru="НАВЫКИ" data-en="SKILLS">SKILLS</span></button>
+<ul class="disc-list">
+<li><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></li>
+<li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+<li><span data-ru="Дизайн упаковки" data-en="Packaging Design">Packaging Design</span></li>
+<li><span data-ru="Дизайн постеров" data-en="Poster Design">Poster Design</span></li>
+<li><span data-ru="Типографика" data-en="Typography">Typography</span></li>
+<li><span data-ru="Информационный дизайн" data-en="Information Design">Information Design</span></li>
+<li><span data-ru="Средовой дизайн" data-en="Spatial Design">Spatial Design</span></li>
+<li><span data-ru="Дизайн инсталляций" data-en="Installation Design">Installation Design</span></li>
+<li><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></li>
+<li><span data-ru="Дизайн книги" data-en="Book Design">Book Design</span></li>
+</ul>
+</div>
+<div class="block block-4">
+<div style="width:100%;height:var(--pd-h0);background:#E4E1DD;position:relative;overflow:hidden;">
+  <img src="assets/face_home.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;mix-blend-mode:multiply;opacity:0.85;"/>
+</div>
+</div>
+</div>
+<section class="projects-section">
+<!-- 1. Следуй за мной -->
+<div class="project-row" onclick="showProject('p4')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner" style="background-image:url('assets/hero%20hai.jpg');background-size:cover;background-position:center;"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p4');return false;"><span class="project-title-line"><span data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></span>
+<span class="project-tag-item"><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></span>
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p4-ru">Страница в&nbsp;работе. Проверьте позже.</p><p class="proj-caption" id="desc-p4-en" style="display:none;">Page in progress. Check back later.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p2')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg1"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p2');return false;"><span class="project-title-line"><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">Следуй за&nbsp;мной</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></span>
+<span class="project-tag-item"><span data-ru="Дизайн книги" data-en="Book Design">Book Design</span></span>
+<span class="project-tag-item"><span data-ru="Типографика" data-en="Typography">Typography</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p2-ru">«Следуй за&nbsp;мной» — карманная книга о&nbsp;том, как&nbsp;Софи Каль собирает портреты людей через оставленные ими следы.</p><p class="proj-caption" id="desc-p2-en" style="display:none;">"Follow Me" is a pocket book exploring how Sophie Calle creates portraits of people through the traces they leave behind.</p></div>
+</div>
+<!-- 2. В ритме дней -->
+<div class="project-row" onclick="showProject('p3')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg2"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p3');return false;"><span class="project-title-line"><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;ритме дней</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Информационный дизайн" data-en="Information Design">Information Design</span></span>
+<span class="project-tag-item"><span data-ru="Средовой дизайн" data-en="Spatial Design">Spatial Design</span></span>
+<span class="project-tag-item"><span data-ru="Дизайн инсталляций" data-en="Installation Design">Installation Design</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p3-ru">Проект календаря, в&nbsp;котором повторяющаяся структура дней отражает монотонность времени и&nbsp;изменчивость повседневности.</p><p class="proj-caption" id="desc-p3-en" style="display:none;">A calendar project exploring the rhythm of time through a repeating structure of days, reflecting both monotony and the shifting nature of everyday life.</p></div>
+</div>
+<!-- 3. COVER -->
+<div class="project-row" onclick="showProject('p5')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg4"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p5');return false;"><span class="project-title-line"><span data-ru="COVER" data-en="COVER">COVER</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></span>
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+<span class="project-tag-item"><span data-ru="Дизайн упаковки" data-en="Packaging Design">Packaging Design</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p5-ru">Брендинг и&nbsp;упаковка для&nbsp;дизайнерского бренда одежды COVER.</p><p class="proj-caption" id="desc-p5-en" style="display:none;">Branding and packaging design for the fashion brand COVER.</p></div>
+</div>
+<!-- 4. Underdog постеры -->
+<div class="project-row" onclick="showProject('p7')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner" style="background-image:url('assets/poster7.png');background-size:cover;background-position:center;"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p7');return false;"><span class="project-title-line"><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">Underdog постеры</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+<span class="project-tag-item"><span data-ru="Дизайн постеров" data-en="Poster Design">Poster Design</span></span>
+<span class="project-tag-item"><span data-ru="Типографика" data-en="Typography">Typography</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p7-ru">Плакаты для&nbsp;проекта Underdog, предоставляющего начинающим авторам платформу для&nbsp;самопрезентации и&nbsp;поиска своей аудитории.</p><p class="proj-caption" id="desc-p7-en" style="display:none;">Posters for the Underdog project, giving emerging creators a platform to present themselves and find their audience.</p></div>
+</div>
+<!-- 5. K. Ter-Harutyunyan Museum -->
+<div class="project-row project-disabled">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner" style="background-image:url('assets/museum_home.png');background-size:cover;background-position:center;filter:blur(8px);transform:scale(1.05);"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="return false;"><span class="project-title-line"><span data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. Ter-Harutyunyan Museum</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></span>
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p8-ru">Страница в&nbsp;работе. Проверьте позже.</p><p class="proj-caption" id="desc-p8-en" style="display:none;">Page in progress. Check back later.</p></div>
+</div>
+</section>
+</div>
+<!-- ════
+  <!-- Layout frames (do not touch the header image above) -->
+<div class="page" data-project="p1" id="page-p2">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p3');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<div class="pd-frame pd-gray mobile-first-project-image" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;"><img src="assets/fmeheroblock.png" style="width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;display:block;"/></div>
+<!-- ROW 1: hero текст (3+2+2 колонки) + блок 1 картинка (3 колонки, высота pd-h0) -->
+<div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;">
+<p class="ph-body" id="p2-desc-ru">«Следуй за&nbsp;мной» — карманная книга-исследование о&nbsp;художественном методе Софи Каль и&nbsp;о&nbsp;том, как&nbsp;чужая жизнь превращается в&nbsp;рассказ. Каль собирает портреты людей по&nbsp;косвенным свидетельствам: оставленным вещам, маршрутам по&nbsp;городу, фотографиям, воспоминаниям и&nbsp;словам посторонних. Человек возникает не&nbsp;как&nbsp;цельный образ, а&nbsp;как&nbsp;совокупность следов, отобранных и&nbsp;соединённых наблюдателем.</p>
+<p class="ph-body" id="p2-desc-en" style="display:none;">"Follow Me" is a pocket-sized research book exploring Sophie Calle&rsquo;s artistic practice and the ways in which another person&rsquo;s life can be shaped into a narrative. Calle constructs portraits through indirect evidence: belongings left behind, routes through the city, photographs, memories, and other people&rsquo;s accounts. Rather than appearing as a complete image, each person emerges as a collection of traces selected and assembled by an observer.</p>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link proj-index-current" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></li>
+<li><span data-ru="Дизайн книги" data-en="Book Design">Book Design</span></li>
+<li><span data-ru="Типографика" data-en="Typography">Typography</span></li>
+</ul>
+</div>
+
+<!-- блок 1 (серый) — правые 3 колонки, row 1, высота pd-h0 -->
+
+<!-- ROW 2: пустота 7 колонок + блок 2 (красный/серый) — 3 колонки, высота pd-h1 -->
+<script>
+(function(){
+  function makeDraggable(img) {
+    if(!img) return;
+    var dragging = false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown', function(e){
+      dragging = true;
+      ox = e.clientX - tx;
+      oy = e.clientY - ty;
+      img.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!dragging) return;
+      tx = e.clientX - ox;
+      ty = e.clientY - oy;
+      img.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+    });
+    window.addEventListener('mouseup', function(){
+      if(!dragging) return;
+      dragging = false;
+      img.style.cursor = 'grab';
+    });
+    img.addEventListener('touchstart', function(e){
+      dragging = true;
+      var t = e.touches[0];
+      ox = t.clientX - tx;
+      oy = t.clientY - ty;
+      e.preventDefault();
+    }, {passive:false});
+    window.addEventListener('touchmove', function(e){
+      if(!dragging) return;
+      var t = e.touches[0];
+      tx = t.clientX - ox;
+      ty = t.clientY - oy;
+      img.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+      e.preventDefault();
+    }, {passive:false});
+    window.addEventListener('touchend', function(){ dragging = false; });
+  }
+  window.addEventListener('load', function(){
+    makeDraggable(document.getElementById('quote-p2-img-ru'));
+    makeDraggable(document.getElementById('quote-p2-img-en'));
+    makeDraggable(document.getElementById('quote-p2-ru2'));
+    makeDraggable(document.getElementById('quote-p2-en2'));
+    makeDraggable(document.getElementById('quote-p2-ru3'));
+    makeDraggable(document.getElementById('quote-p2-en3'));
+  });
+})();
+</script>
+<!-- блок 2 — правые 3 колонки, row 2, высота pd-h1 -->
+<div class="pd-frame pd-gray project-media p2-fmehero" style="grid-column: 6 / span 5; grid-row: 2; height:auto; aspect-ratio:4/3; padding:0; overflow:hidden;"><img src="assets/fmehero.png" style="width:100%;height:100%;object-fit:cover;display:block;border:0;outline:0;box-shadow:none;"/>
+</div>
+<div class="project-copy p2-method-copy" style="grid-column: 1 / span 5; grid-row: 2;">
+<div id="p2-method-copy-ru">
+<p class="ph-body">Меня интересовало, почему эти истории воспринимаются как&nbsp;документальные, хотя их&nbsp;убедительность создаётся художественными средствами. За&nbsp;этой объективностью всегда присутствует автор: именно Каль решает, за&nbsp;кем следовать, что зафиксировать и&nbsp;какая часть чужой жизни станет видимой.</p>
+<p class="ph-body">Поэтому книга посвящена не&nbsp;только людям, за&nbsp;которыми наблюдает художница. Она исследует сам взгляд, собирающий их&nbsp;истории, и&nbsp;границу, за&nbsp;которой любопытство превращается в&nbsp;метод, а&nbsp;документирование — во&nbsp;вмешательство.</p>
+<p class="ph-body">Книга выполнена в&nbsp;компактном формате и&nbsp;помещается в&nbsp;карман пальто. Её можно незаметно достать, быстро закрыть или&nbsp;спрятать. Она напоминает найденное досье, записную книжку или&nbsp;бульварную хронику.</p>
+</div>
+<div id="p2-method-copy-en" style="display:none;">
+<p class="ph-body">I was interested in why these stories feel documentary, even though their credibility is constructed through artistic means. Behind their apparent objectivity, the author is always present: Calle decides whom to follow, what to record, and which parts of another person&rsquo;s life will be made visible.</p>
+<p class="ph-body">The book therefore focuses on more than the people Calle observes. It examines the gaze that gathers and shapes their stories, as well as the point at which curiosity becomes a method and documentation turns into intrusion.</p>
+<p class="ph-body">Designed in a compact format, the book fits inside a coat pocket. It can be discreetly taken out, quickly closed, or slipped out of sight. Its form recalls a found dossier, a private notebook, or a piece of tabloid reporting.</p>
+</div>
+</div>
+<!-- ROW 3: блок 3 — 7 колонок, высота 2.1× pd-h0 -->
+<div class="pd-frame pd-gray pf-3 project-media" style="grid-column: 1 / span 7; grid-row: 3; padding: 0; overflow: hidden;">
+<img src="assets/asset_04.gif" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<!-- пустота справа -->
+<div style="grid-column: 8 / span 3; grid-row: 3;"></div>
+<div class="project-copy p2-visual-language-copy" style="grid-column: 1 / span 5; grid-row: 4;">
+<div id="p2-visual-language-copy-ru">
+<p class="ph-body"><strong>Визуальный язык</strong></p>
+<p class="ph-body">Структура книги соединяет два голоса. Первый складывается из записей Софи Каль и&nbsp;позволяет приблизиться к&nbsp;логике её наблюдения. Второй анализирует увиденное, ставит под сомнение нейтральность этого метода и&nbsp;предлагает другой взгляд на&nbsp;происходящее. Читатель перемещается между свидетельством и&nbsp;интерпретацией, постепенно осознавая, что документ никогда не&nbsp;существует отдельно от&nbsp;того, кто его создаёт.</p>
+</div>
+<div id="p2-visual-language-copy-en" style="display:none;">
+<p class="ph-body"><strong>Visual Language</strong></p>
+<p class="ph-body">The book&rsquo;s structure brings together two voices. The first emerges through Sophie Calle&rsquo;s own notes, drawing the reader closer to&nbsp;the logic of&nbsp;her observations. The second analyzes what has been documented, questions the neutrality of&nbsp;her method, and offers an&nbsp;alternative perspective on&nbsp;the events.</p>
+<p class="ph-body">Moving between evidence and interpretation, the reader gradually comes to&nbsp;understand that a&nbsp;document can never be separated from the person who creates it.</p>
+</div>
+</div>
+<div class="pd-frame pd-gray pf-4 project-media" style="grid-column: 6 / span 5; grid-row: 4; padding:0; overflow:hidden;"><img src="assets/asset_05.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 5: блок 5 (1–5) и блок 6 (6–10), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-5 project-media" style="grid-column: 1 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="assets/asset_06.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-6 project-media" style="grid-column: 6 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="assets/fmebook.gif" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="project-copy p2-reader-trace-copy" style="grid-column: 1 / span 5; grid-row: 6;">
+<div id="p2-reader-trace-copy-ru">
+<p class="ph-body"><strong>След читателя</strong></p>
+<p class="ph-body">В&nbsp;нижней части каждой страницы оставлена свободная полоса. У&nbsp;этого решения есть практическая функция: благодаря пустому полю небольшую книгу удобно держать, не&nbsp;закрывая пальцами текст и&nbsp;изображения.</p>
+<p class="ph-body">Но&nbsp;со&nbsp;временем эта зона начинает выполнять другую роль. На&nbsp;ней остаются прикосновения, потёртости и&nbsp;следы рук человека, который читает книгу. К&nbsp;следам героев и&nbsp;самой Софи Каль добавляется присутствие нового наблюдателя.</p>
+<p class="ph-body">Читатель больше не&nbsp;находится за&nbsp;пределами истории. Держа книгу в&nbsp;руках, он буквально вторгается в&nbsp;чужую жизнь и&nbsp;оставляет на&nbsp;ней собственный отпечаток.</p>
+</div>
+<div id="p2-reader-trace-copy-en" style="display:none;">
+<p class="ph-body"><strong>The Reader&rsquo;s Trace</strong></p>
+<p class="ph-body">A&nbsp;blank strip runs along the bottom of&nbsp;every page. The decision serves a&nbsp;practical purpose: it&nbsp;allows the small book to&nbsp;be held comfortably without the reader&rsquo;s fingers covering the text or&nbsp;images.</p>
+<p class="ph-body">Over time, however, this space takes on&nbsp;another role. It&nbsp;collects fingerprints, scuffs, and marks left by&nbsp;the person handling the book. The traces of&nbsp;its subjects and Sophie Calle herself are joined by&nbsp;the presence of&nbsp;a&nbsp;new observer.</p>
+<p class="ph-body">The reader no&nbsp;longer stands outside the story. By&nbsp;holding the book, they physically enter another person&rsquo;s life and leave their own trace behind.</p>
+</div>
+</div>
+<!-- ROW 7: блок 7 — 1–7, высота 1.1× -->
+<div class="pd-frame pd-gray pf-7 project-media" style="grid-column: 1 / span 7; grid-row: 7; padding:0; overflow:hidden;"><img src="assets/asset_08.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 8: блоки 8 (4 кол), 9 (3 кол), 10 (3 кол), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-8 project-media" style="grid-column: 1 / span 4; grid-row: 8; padding:0; overflow:hidden;"><img src="assets/asset_09.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-9 project-media" style="grid-column: 5 / span 3; grid-row: 8; padding:0; overflow:hidden;"><img src="assets/asset_10.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-10 project-media" style="grid-column: 8 / span 3; grid-row: 8; padding:0; overflow:hidden;"><img src="assets/asset_11.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="project-copy p2-conclusion-copy" style="grid-column: 6 / span 5; grid-row: 9;">
+<div id="p2-conclusion-copy-ru">
+<p class="ph-body">Издание не&nbsp;предлагает окончательной оценки метода Софи Каль. Оно помещает читателя внутрь той&nbsp;же этической ситуации: чтобы приблизиться к&nbsp;другому человеку, приходится смотреть, отбирать, интерпретировать — и&nbsp;неизбежно оставлять след собственного присутствия.</p>
+</div>
+<div id="p2-conclusion-copy-en" style="display:none;">
+<p class="ph-body">The publication offers no&nbsp;definitive judgment on&nbsp;Sophie Calle&rsquo;s method. Instead, it&nbsp;places the reader within the same ethical tension: to&nbsp;draw closer to&nbsp;another person, we&nbsp;must observe, select, and interpret—and inevitably leave a&nbsp;trace of&nbsp;our own presence.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page" id="page-p3">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p5');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-img pd-span-3 pd-h0 pd-hero-img mobile-first-project-image" style="grid-column: 8 / span 3; grid-row: 1; background: url('assets/asset_12.png') center/cover no-repeat;"></div><div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;"><p class="ph-body" id="p3-desc-ru">Календарь представляет год как&nbsp;равномерную сетку повторяющихся дней, подчёркивая визуальную монотонность и&nbsp;одинаковость ритма. Вертикальные полосы добавляют движение, указывая на&nbsp;изменчивость и&nbsp;нестабильность повседневности. Несмотря на&nbsp;одинаковую структуру, каждый день подвержен динамике внешних обстоятельств.</p><p class="ph-body" id="p3-desc-en" style="display:none;">The calendar represents the year as a uniform grid of repeating days, emphasizing visual monotony and the sameness of rhythm. The vertical strips introduce movement, pointing to the unpredictability and instability of everyday life. Despite this identical structure, each day remains subject to the dynamics of external circumstances.</p></div><div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;"><ul class="proj-index-list">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link proj-index-current" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul></div><div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;"><ul class="ph-tags"><li><span data-ru="Информационный дизайн" data-en="Information Design">Information Design</span></li><li><span data-ru="Средовой дизайн" data-en="Spatial Design">Spatial Design</span></li><li><span data-ru="Дизайн инсталляций" data-en="Installation Design">Installation Design</span></li></ul></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p3-ribbon-media" style="grid-column: 1 / span 5; grid-row: 1; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/asset_15.png"/>
+</div>
+<div class="project-copy p3-calendar-copy" style="grid-column: 6 / span 5; grid-row: 1;">
+<div id="p3-calendar-copy-ru">
+<p class="ph-body">Календарь превращает год в&nbsp;упорядоченную последовательность равных единиц. Каждый день получает одинаковую ширину, структуру и&nbsp;место в&nbsp;системе, создавая ощущение предсказуемого, почти механического ритма.</p>
+<p class="ph-body">В&nbsp;пространстве эта строгая сетка теряет устойчивость. Вертикальные ленты различаются по&nbsp;длине, движутся от&nbsp;воздуха и&nbsp;реагируют на&nbsp;присутствие человека. Цветовые переходы размывают границы между периодами, показывая, как&nbsp;постепенно меняется наше восприятие времени.</p>
+</div>
+<div id="p3-calendar-copy-en" style="display:none;">
+<p class="ph-body">The calendar turns the year into an ordered sequence of equal units. Every day is given the same width, structure, and place within the system, creating a predictable, almost mechanical rhythm.</p>
+<p class="ph-body">Once brought into physical space, this rigid grid begins to lose its stability. The vertical strips vary in length, move with the air, and respond to the presence of people. Gradual shifts in color blur the boundaries between periods, reflecting how our perception of time changes almost imperceptibly.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/asset_14.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p3-vritme-media" style="grid-column: 6 / span 5; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/vritme.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/lines.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p3-environment-copy" style="grid-column: 6 / span 5;">
+<div id="p3-environment-copy-ru">
+<p class="ph-body">Календарь перестаёт быть плоским инструментом учёта и&nbsp;становится физической средой. Сквозь неё можно пройти, к&nbsp;ней можно прикоснуться, её фрагмент можно носить на&nbsp;себе. Несмотря на&nbsp;одинаковое устройство дней, каждый из&nbsp;них меняется под&nbsp;воздействием внешних обстоятельств, личного опыта и&nbsp;случайных событий.</p>
+</div>
+<div id="p3-environment-copy-en" style="display:none;">
+<p class="ph-body">The calendar is no longer a flat tool for measuring time; it becomes an environment. You can walk through it, touch it, and carry a fragment of it with you. Although every day follows the same structure, each is reshaped by circumstance, personal experience, and chance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media p3-gif-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<video class="pd-media" autoplay loop muted playsinline preload="auto">
+<source src="assets/gradient.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p3-pair-01" style="grid-column: 1 / span 10;">
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/linebag.png"/></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/lines%20(2).png"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p3-karabin-media" style="grid-column: 1 / span 5; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/karabin.png"/>
+</div>
+<div class="project-copy p3-tension-copy" style="grid-column: 6 / span 5;">
+<div id="p3-tension-copy-ru">
+<p class="ph-body">Проект исследует противоречие между календарным и&nbsp;проживаемым временем: система повторяется, но&nbsp;ни&nbsp;один день не&nbsp;ощущается в&nbsp;точности как&nbsp;предыдущий.</p>
+</div>
+<div id="p3-tension-copy-en" style="display:none;">
+<p class="ph-body">The project explores the tension between calendar time and lived experience: the system repeats, yet no two days ever feel exactly the same.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 03 ══════ -->
+<!-- ══════ PROJECT 05: K. TER-HARUTYUNYAN MUSEUM ══════ -->
+<div class="page" id="page-p8">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;"><p class="ph-body" id="p8-desc-ru">Страница проекта в&nbsp;работе. Проверьте позже.</p><p class="ph-body" id="p8-desc-en" style="display:none;">Project page in progress. Check back later.</p></div><div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;"><ul class="proj-index-list">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link proj-index-current" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul></div><div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;"><ul class="ph-tags"><li><span data-ru="Исследование" data-en="Research">Research</span></li><li><span data-ru="Графический дизайн" data-en="Graphic Design">Graphic Design</span></li></ul></div><div class="pd-img pd-span-3 pd-h0 pd-hero-img mobile-first-project-image" style="background:#E4E1DD;"></div></div></div>
+</div>
+</div>
+</div>
+
+<div class="page" id="page-p4">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-frame pd-gray mobile-first-project-image" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;"><img src="assets/hero%20hai.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"/></div><div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;"><p class="ph-body" id="p4-desc-ru">[HAI] TALK — концепция городского медиа, которое рассказывает о&nbsp;Ереване через личные наблюдения его жителей. Вместо единого авторитетного голоса проект собирает множество взглядов: профессиональных и&nbsp;бытовых, исторических и&nbsp;современных, местных и&nbsp;недавно появившихся. Ереван невозможно свести к&nbsp;одной истории. Для&nbsp;человека, выросшего здесь, репатрианта, иностранного студента или&nbsp;недавнего релоканта это разные города, существующие одновременно в&nbsp;одних и&nbsp;тех&nbsp;же улицах.</p><p class="ph-body" id="p4-desc-en" style="display:none;">[HAI] TALK is a concept for an urban media platform that tells the story of Yerevan through the personal observations of its residents. Rather than relying on a single authoritative voice, the project brings together multiple perspectives: professional and everyday, historical and contemporary, long-established and newly arrived. Yerevan cannot be reduced to a single story. To someone who grew up here, a repatriate, an international student, or a recent arrival, it is a different city&mdash;several Yerevans coexisting within the same streets.</p></div><div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;"><ul class="proj-index-list">
+<li><a class="proj-link proj-index-current" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul></div><div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;"><ul class="ph-tags"><li><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></li><li><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></li><li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li></ul></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-01" style="grid-column: 1 / span 10;">
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/branding.png"/></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/businesscard.jpg"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-context-copy" style="grid-column: 1 / span 5;">
+<div id="p4-context-copy-ru">
+<p class="ph-body"><strong>Контекст</strong></p>
+<p class="ph-body">Сегодня в&nbsp;Ереване живут люди с&nbsp;принципиально разным опытом: коренные жители, армяне из&nbsp;диаспоры, репатрианты, релоканты и&nbsp;иностранцы. Они пользуются одной городской инфраструктурой, но&nbsp;по-разному воспринимают её&nbsp;историю, архитектуру, повседневные ритуалы и&nbsp;темп жизни.</p>
+<p class="ph-body">Большинство материалов о&nbsp;городе предлагает уже готовую оптику. Туристические путеводители собирают достопримечательности, новостные медиа фиксируют события, а&nbsp;экспертные публикации объясняют историю и&nbsp;архитектуру. За&nbsp;этими форматами часто остаётся незаметным повседневное знание&nbsp;— субъективное, негромкое и&nbsp;связанное с&nbsp;личным опытом.</p>
+<p class="ph-body">Именно этот слой стал основой проекта.</p>
+</div>
+<div id="p4-context-copy-en" style="display:none;">
+<p class="ph-body"><strong>Context</strong></p>
+<p class="ph-body">Yerevan is&nbsp;home to&nbsp;people with fundamentally different lived experiences: lifelong residents, members of&nbsp;the Armenian diaspora, repatriates, recent arrivals, and international communities. They share the same urban infrastructure, yet experience its history, architecture, everyday rituals, and pace of&nbsp;life in&nbsp;very different ways.</p>
+<p class="ph-body">Most content about the city comes with a&nbsp;ready-made perspective. Travel guides catalogue landmarks, news outlets document events, and expert publications interpret its history and architecture. What often remains unseen is&nbsp;everyday knowledge&mdash;subjective, understated, and rooted in&nbsp;personal experience.</p>
+<p class="ph-body">This overlooked layer became the foundation of&nbsp;the project.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media p4-sofa-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/posts%20and%20a%20girl%20hai.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-challenge-copy" style="grid-column: 4 / span 4;">
+<div id="p4-challenge-copy-ru">
+<p class="ph-body"><strong>Проблема</strong></p>
+<p class="ph-body">Как&nbsp;рассказать о&nbsp;городе, не&nbsp;сводя его к&nbsp;единой версии?</p>
+<p class="ph-body">Задача состояла в&nbsp;том, чтобы разработать медиа, где различия между взглядами не&nbsp;сглаживаются, а&nbsp;становятся главным редакционным принципом. Экспертное знание должно было существовать на&nbsp;равных с&nbsp;личной памятью, повседневной привычкой и&nbsp;случайным наблюдением.</p>
+</div>
+<div id="p4-challenge-copy-en" style="display:none;">
+<p class="ph-body"><strong>The Challenge</strong></p>
+<p class="ph-body">How can a&nbsp;city be&nbsp;portrayed without reducing it&nbsp;to&nbsp;a&nbsp;single version?</p>
+<p class="ph-body">The challenge was to&nbsp;create a&nbsp;media platform where differences in&nbsp;perspective would not&nbsp;be&nbsp;smoothed over, but become the central editorial principle. Expert knowledge needed to&nbsp;stand on&nbsp;equal ground with personal memory, everyday habits, and chance observations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-02" style="grid-column: 1 / span 10;">
+<div class="project-media"><video class="pd-media" autoplay loop muted playsinline preload="auto"><source src="assets/Frame%201077235815.mp4" type="video/mp4"></video></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/Group%20121.jpg"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-name-copy" style="grid-column: 1 / span 5;">
+<div id="p4-name-copy-ru">
+<p class="ph-body"><strong>Название</strong></p>
+<p class="ph-body">[HAI]&nbsp;TALK строится на&nbsp;встрече локального и&nbsp;универсального. HAI отсылает к&nbsp;армянской идентичности и&nbsp;одновременно звучит как&nbsp;начало разговора&nbsp;— короткое приветствие, после которого может последовать вопрос.</p>
+<p class="ph-body">Квадратные скобки выделяют HAI как&nbsp;отдельный голос внутри названия. Они напоминают элемент транскрипции и&nbsp;поддерживает идею медиа, которое фиксирует живую речь.</p>
+</div>
+<div id="p4-name-copy-en" style="display:none;">
+<p class="ph-body"><strong>The Name</strong></p>
+<p class="ph-body">[HAI]&nbsp;TALK brings the local and&nbsp;the universal together. HAI refers to&nbsp;Armenian identity while also sounding like the beginning of&nbsp;a&nbsp;conversation&mdash;a&nbsp;brief &ldquo;hi&rdquo; that opens the door to&nbsp;a&nbsp;question.</p>
+<p class="ph-body">The square brackets frame HAI as&nbsp;a&nbsp;distinct voice within the name. Resembling phonetic transcription, they reinforce the idea of&nbsp;a&nbsp;media platform built around capturing speech as&nbsp;it&nbsp;is&nbsp;spoken.</p>
+</div>
+</div>
+<div class="pd-frame project-media p4-name-media" style="grid-column: 6 / span 5; padding:0; overflow:hidden;">
+<video class="pd-media" autoplay loop muted playsinline preload="auto">
+<source src="assets/%D1%85%D0%B0%D0%B9.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media p4-billboard-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/3postershai%202.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p4-format-media" style="grid-column: 1 / span 6; padding:0; overflow:hidden;">
+<video class="pd-media" autoplay loop muted playsinline preload="auto">
+<source src="assets/%D0%A1%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%201%20(34).mp4" type="video/mp4">
+</video>
+</div>
+<div class="project-copy p4-format-copy" style="grid-column: 7 / span 4;">
+<div id="p4-format-copy-ru">
+<p class="ph-body">В&nbsp;основе [HAI]&nbsp;TALK лежит формат &laquo;одна тема&nbsp;— много взглядов&raquo;.</p>
+<p class="ph-body">Каждый выпуск посвящён одному месту, маршруту или&nbsp;городскому явлению. Редакция передаёт тему нескольким героям с&nbsp;разным опытом и&nbsp;просит каждого рассказать только о&nbsp;том, что&nbsp;замечает именно он.</p>
+<p class="ph-body">Например, прогулка по&nbsp;проспекту Маштоца может быть собрана из&nbsp;наблюдений:<br>- архитектора, читающего историю города по&nbsp;фасадам;<br>- релоканта, который видит знакомое место впервые;<br>- продавца или&nbsp;местного жителя, хранящего личные воспоминания о&nbsp;районе.</p>
+<p class="ph-body">Задача медиа&nbsp;— не&nbsp;определить, чей взгляд точнее. Каждый голос открывает слой города, недоступный остальным.</p>
+</div>
+<div id="p4-format-copy-en" style="display:none;">
+<p class="ph-body">At&nbsp;the heart of&nbsp;[HAI]&nbsp;TALK is&nbsp;a&nbsp;simple format: one subject, many perspectives.</p>
+<p class="ph-body">Each edition focuses on&nbsp;a&nbsp;single place, route, or&nbsp;aspect of&nbsp;urban life. The editorial team invites several people with different backgrounds to&nbsp;respond to&nbsp;the same subject, asking each of&nbsp;them to&nbsp;share what they notice from&nbsp;their particular point of&nbsp;view.</p>
+<p class="ph-body">A&nbsp;walk along Mashtots Avenue, for&nbsp;example, might bring together the observations of:<br>- an&nbsp;architect who reads the city&rsquo;s history through its fa&ccedil;ades;<br>- a&nbsp;recent arrival seeing a&nbsp;familiar place with fresh eyes;<br>- a&nbsp;shopkeeper or&nbsp;longtime resident carrying personal memories of&nbsp;the neighborhood.</p>
+<p class="ph-body">The role of&nbsp;the platform is&nbsp;not&nbsp;to&nbsp;decide which perspective is&nbsp;the most accurate. Each voice reveals a&nbsp;layer of&nbsp;the city that remains invisible to&nbsp;the others.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-03" style="grid-column: 1 / span 10;">
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/hai%20poster.jpg"/></div>
+<div class="project-media"><video class="pd-media" autoplay loop muted playsinline preload="auto"><source src="assets/Frame%201077235825_1.mp4" type="video/mp4"></video></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-longread-copy" style="grid-column: 4 / span 4;">
+<div id="p4-longread-copy-ru">
+<p class="ph-body"><strong>Формат</strong></p>
+<p class="ph-body">Основой проекта становится лонгрид-мозаика: несколько коротких монологов, объединённых одной темой. Это&nbsp;не&nbsp;классическое интервью с&nbsp;вопросами и&nbsp;ответами, а&nbsp;серия самостоятельных высказываний, которые читатель сопоставляет между собой.</p>
+<p class="ph-body">Каждый материал представляет героя через&nbsp;имя, возраст и&nbsp;его связь с&nbsp;городом: профессию, занятие или&nbsp;жизненный опыт.</p>
+<p class="ph-body">Текст остаётся главным форматом медиа. Он&nbsp;позволяет сохранить нюансы речи, собрать доступный для&nbsp;поиска городской архив и&nbsp;адаптировать материалы для&nbsp;многоязычной аудитории.</p>
+</div>
+<div id="p4-longread-copy-en" style="display:none;">
+<p class="ph-body"><strong>Format</strong></p>
+<p class="ph-body">The project is&nbsp;built around a&nbsp;mosaic-style long-form format: a&nbsp;collection of&nbsp;short monologues connected by&nbsp;a&nbsp;shared theme. Rather than&nbsp;following a&nbsp;traditional question-and-answer structure, each piece brings together independent accounts that readers are invited to&nbsp;compare and&nbsp;interpret.</p>
+<p class="ph-body">Every contributor is&nbsp;introduced through their name, age, and&nbsp;relationship to&nbsp;the city&mdash;whether defined by&nbsp;their profession, daily practice, or&nbsp;lived experience.</p>
+<p class="ph-body">Text remains the platform&rsquo;s primary medium. It&nbsp;preserves the nuances of&nbsp;each person&rsquo;s voice, creates a&nbsp;searchable archive of&nbsp;urban life, and&nbsp;allows stories to&nbsp;be&nbsp;adapted for&nbsp;a&nbsp;multilingual audience.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-04" style="grid-column: 1 / span 10;">
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/stickers.png"/></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/stickers2.png"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p4-tshirts-media" style="grid-column: 1 / span 7; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/tshirts-tuff-wall-face-edited.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-05" style="grid-column: 1 / span 10;">
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/tote-realistic-print-gray-handles-3x4.png"/></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/tote-print-realistic-3x4.png"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-mediaenv-copy" style="grid-column: 1 / span 5;">
+<div id="p4-mediaenv-copy-ru">
+<p class="ph-body"><strong>Медиа в&nbsp;городской среде</strong></p>
+<p class="ph-body">[HAI]&nbsp;TALK не&nbsp;ограничивается сайтом и&nbsp;социальными сетями. Айдентика переносится на&nbsp;вещи, которые могут существовать внутри повседневной жизни Еревана: футболки, брелоки, стикеры, значки, подставки и&nbsp;упаковку.</p>
+<p class="ph-body">На&nbsp;подставках появляются короткие истории, услышанные от&nbsp;работников заведений. На&nbsp;брелоках и&nbsp;стикерах&nbsp;— вопросы и&nbsp;фразы, способные запустить случайный диалог. Даже букет или&nbsp;предмет одежды может стать носителем городской истории.</p>
+<p class="ph-body">Так медиа возвращается туда, откуда берёт материал: на&nbsp;улицы, рынки, в&nbsp;кафе и&nbsp;разговоры между людьми.</p>
+</div>
+<div id="p4-mediaenv-copy-en" style="display:none;">
+<p class="ph-body"><strong>Media in&nbsp;the Urban Environment</strong></p>
+<p class="ph-body">[HAI]&nbsp;TALK extends beyond its website and&nbsp;social platforms. The identity moves into objects that belong to&nbsp;everyday life in&nbsp;Yerevan: T-shirts, keychains, stickers, badges, coasters, and&nbsp;packaging.</p>
+<p class="ph-body">Coasters carry short stories overheard from&nbsp;the people working in&nbsp;local venues. Keychains and&nbsp;stickers feature questions and&nbsp;phrases designed to&nbsp;spark spontaneous conversations. Even a&nbsp;bouquet or&nbsp;an&nbsp;item of&nbsp;clothing can become a&nbsp;carrier of&nbsp;the city&rsquo;s stories.</p>
+<p class="ph-body">In&nbsp;this way, the media platform returns to&nbsp;the places where its material originates: the streets, markets, caf&eacute;s, and&nbsp;conversations between people.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media p4-flowers-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/f4b27381-8d85-43cc-b58f-c6e3f8e44fe3.jpg"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame project-media p4-books-media" style="grid-column: 1 / span 7; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/Frame%201077235862.png"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-frame pd-span-10 project-media p4-coasters-media" style="grid-column: 1 / span 10; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/9d100671-0746-44df-b677-610c0d8afa6c.jpg"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-scalability-copy" style="grid-column: 1 / span 5;">
+<div id="p4-scalability-copy-ru">
+<p class="ph-body"><strong>Масштабирование</strong></p>
+<p class="ph-body">Редакционный принцип позволяет развивать проект вокруг любых тем:<br>- районы, улицы и&nbsp;отдельные здания;<br>- жара, первый снег, пробки и&nbsp;сезонные переезды;<br>- рынки, дворы, общественный транспорт и&nbsp;ночная жизнь;<br>- городские праздники и&nbsp;повседневные ритуалы;<br>- изменения архитектуры, снос и&nbsp;новое строительство;<br>- музыка, еда, ремесло и&nbsp;локальные сообщества.</p>
+<p class="ph-body">Медиа может существовать как&nbsp;самостоятельная редакция, ограниченная сезонная серия или&nbsp;открытая платформа для&nbsp;горожан.</p>
+</div>
+<div id="p4-scalability-copy-en" style="display:none;">
+<p class="ph-body"><strong>Scalability</strong></p>
+<p class="ph-body">The editorial framework allows the project to&nbsp;expand across a&nbsp;wide range of&nbsp;subjects:<br>- neighborhoods, streets, and&nbsp;individual buildings;<br>- summer heat, the first snow, traffic, and&nbsp;seasonal movement;<br>- markets, courtyards, public transport, and&nbsp;nightlife;<br>- city celebrations and&nbsp;everyday rituals;<br>- architectural change, demolition, and&nbsp;new development;<br>- music, food, craft, and&nbsp;local communities.</p>
+<p class="ph-body">The platform can evolve into an&nbsp;independent publication, a&nbsp;limited seasonal series, or&nbsp;an&nbsp;open platform where residents contribute their own perspectives on&nbsp;the city.</p>
+</div>
+</div>
+<div class="pd-frame project-media p4-doorsticker-media" style="grid-column: 6 / span 5; padding:0; overflow:hidden;">
+<img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/doorsticker2.jpg"/>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-media-pair p4-pair-06" style="grid-column: 1 / span 10;">
+<div class="project-media"><video class="pd-media" autoplay loop muted playsinline preload="auto"><source src="assets/video%2030fps.mp4" type="video/mp4"></video></div>
+<div class="project-media"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/lift.jpg"/></div>
+</div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="project-copy p4-outcome-copy" style="grid-column: 1 / span 5;">
+<div id="p4-outcome-copy-ru">
+<p class="ph-body"><strong>Результат</strong></p>
+<p class="ph-body">В&nbsp;результате была разработана концепция городского медиа с&nbsp;собственным редакционным методом, визуальным языком и&nbsp;системой носителей.</p>
+<p class="ph-body">[HAI]&nbsp;TALK не&nbsp;пытается составить исчерпывающий портрет Еревана. Проект показывает, что&nbsp;город существует в&nbsp;рассказах людей&nbsp;— иногда противоречивых, субъективных и&nbsp;незаметных по&nbsp;отдельности. Соединяясь, они создают картину, которую невозможно получить из&nbsp;одного путеводителя или&nbsp;одного экспертного комментария.</p>
+</div>
+<div id="p4-outcome-copy-en" style="display:none;">
+<p class="ph-body"><strong>Outcome</strong></p>
+<p class="ph-body">The result is&nbsp;a&nbsp;concept for&nbsp;an&nbsp;urban media platform with its own editorial method, visual language, and&nbsp;system of&nbsp;physical and&nbsp;digital touchpoints.</p>
+<p class="ph-body">[HAI]&nbsp;TALK does not&nbsp;attempt to&nbsp;create a&nbsp;definitive portrait of&nbsp;Yerevan. Instead, it&nbsp;shows how&nbsp;the city exists through the stories of&nbsp;its people&mdash;sometimes contradictory, subjective, and&nbsp;easy to&nbsp;overlook in&nbsp;isolation. Together, these voices form a&nbsp;picture that no&nbsp;single guidebook or&nbsp;expert perspective could provide.</p>
+</div>
+</div>
+<div class="pd-frame project-media p4-outcome-media" style="grid-column: 6 / span 5; padding:0; overflow:hidden;">
+<video class="pd-media" autoplay loop muted playsinline preload="auto">
+<source src="assets/%D0%9A%D0%BE%D0%BC%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D1%8F%201_2%2030fps.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 04 ══════ -->
+<div class="page" id="page-p5">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p7');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<!-- ROW 1: hero текст + блок 1 (как на странице "Следуй за мной") -->
+<div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;">
+<div id="p5-desc-ru">
+<p class="ph-body">COVER — концепция дизайнерского бренда одежды, построенного вокруг тайны и&nbsp;недосказанности. Его вещи не&nbsp;стремятся показать всё сразу: утончённый силуэт, многослойность и&nbsp;скрытые детали оставляют пространство для&nbsp;интерпретации. Одежда частично закрывает тело, но&nbsp;не&nbsp;прячет человека. Напротив, она смещает внимание с&nbsp;очевидного на&nbsp;индивидуальность, внутреннюю силу и&nbsp;способ самовыражения.</p>
+<p class="ph-body">Бренд обращается к&nbsp;людям, которым близок язык высокой моды, но&nbsp;не&nbsp;её&nbsp;недоступность. COVER переносит дизайнерский подход в&nbsp;более открытую ценовую категорию и&nbsp;позволяет широкой аудитории стать частью модной культуры без&nbsp;необходимости соответствовать её&nbsp;традиционной исключительности.</p>
+</div>
+<div id="p5-desc-en" style="display:none;">
+<p class="ph-body">COVER is a conceptual fashion brand built around mystery and restraint. Its garments never reveal everything at once. Refined silhouettes, layered construction, and concealed details leave room for interpretation.</p>
+<p class="ph-body">The clothes partially cover the body without hiding the person wearing them. Instead, they shift attention away from the obvious and toward individuality, presence, and inner strength.</p>
+<p class="ph-body">COVER speaks to people who are drawn to the language of high fashion but excluded by its price and traditional sense of exclusivity. The brand brings a designer-led approach to a more accessible market, opening the door to fashion as a space for personal expression.</p>
+</div>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link proj-index-current" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></li>
+<li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+<li><span data-ru="Дизайн упаковки" data-en="Packaging Design">Packaging Design</span></li>
+</ul>
+</div>
+<div class="pd-frame mobile-first-project-image" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden; background:transparent !important; border:0 !important; box-shadow:none !important; outline:0 !important;">
+<div class="pd-img" style="width:100%; height:100%; background:none !important;">
+<img alt="COVER" class="pd-media cover-img" decoding="async" loading="eager" src="assets/cover%20hero.png" style="width:100% !important; height:100% !important; object-fit:contain !important; object-position:center center !important; display:block !important;"/>
+</div>
+</div>
+<!-- ROW 2: cover logo video, columns 1–5 -->
+<div class="pd-frame pd-gray cover-logo-frame project-media" style="grid-column: 1 / span 5; grid-row: 2; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+<video class="cover-logo-video" autoplay loop muted playsinline preload="auto">
+<source src="assets/cover%20logo.mp4" type="video/mp4">
+</video>
+</div>
+<div class="project-copy cover-logo-desc" style="grid-column: 6 / span 5; grid-row: 2;">
+<div id="p5-logo-desc-ru">
+<p class="ph-body">В&nbsp;основе проекта лежит идея современного fashion-бренда, соединяющего концептуальность дизайнерской одежды с&nbsp;доступностью повседневного гардероба. COVER должен был восприниматься выразительно и&nbsp;самобытно, но&nbsp;не&nbsp;дистанцироваться от&nbsp;покупателя чрезмерной элитарностью.</p>
+<p class="ph-body">Задачей стало создание визуальной идентичности и&nbsp;упаковочной системы, которые могли&nbsp;бы передать характер одежды ещё до&nbsp;знакомства с&nbsp;коллекцией. Все точки контакта — от&nbsp;логотипа до&nbsp;материала упаковки — должны были говорить на&nbsp;одном языке: что-то скрывать, оставлять след и&nbsp;постепенно раскрывать детали.</p>
+</div>
+<div id="p5-logo-desc-en" style="display:none;">
+<p class="ph-body">The project began with the idea of creating a contemporary fashion label that could combine the conceptual depth of designer clothing with the accessibility of an everyday wardrobe. COVER needed to feel distinctive and considered without becoming distant or overly exclusive. Its identity and packaging had to communicate the character of the clothing before the customer ever tried it on. Every touchpoint—from the wordmark to the packaging materials—was shaped by the same principle: conceal part of the form, leave a trace, and reveal the rest gradually.</p>
+</div>
+</div>
+<div class="cover-after-logo-media project-media" style="grid-column: 1 / span 10; grid-row: 3; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f7" decoding="async" loading="lazy" src="assets/asset_23.png"/></div>
+<div class="project-copy cover-stone-desc" style="grid-column: 3 / span 6; grid-row: 4;">
+<div id="p5-stone-desc-ru">
+<p class="ph-body">Название COVER стало отправной точкой всей системы. В&nbsp;контексте бренда оно получает более глубокий смысл: одежда становится границей между человеком и&nbsp;внешним миром&nbsp;— своеобразной второй кожей, которая не&nbsp;маскирует личность, а&nbsp;помогает проявить её&nbsp;на&nbsp;собственных условиях.</p>
+<p class="ph-body">Образ камня дополняет эту метафору. До&nbsp;вмешательства мастера его поверхность скрывает будущую форму. Скульптура появляется постепенно, через точные отсечения и&nbsp;внимание к&nbsp;материалу. Так и&nbsp;вещи COVER не&nbsp;диктуют готовый образ, а&nbsp;дают человеку основу, из&nbsp;которой он&nbsp;может выстроить собственный.</p>
+</div>
+<div id="p5-stone-desc-en" style="display:none;">
+<p class="ph-body">The name COVER became the starting point for the entire visual system. Within the brand, it takes on a deeper meaning: clothing becomes a boundary between the individual and the outside world—a second skin that doesn’t conceal identity, but allows it to emerge on its own terms.</p>
+<p class="ph-body">The image of a raw stone extends this metaphor. Before the sculptor begins, its surface holds a form waiting to be revealed. The sculpture emerges gradually through precise cuts and a close understanding of the material. COVER works in much the same way: rather than prescribing a finished look, its garments provide a foundation from which each person can shape their own.</p>
+</div>
+</div>
+<div class="project-media-pair cover-pair-01" style="grid-column: 1 / span 10; grid-row: 5;">
+<div class="cover-pair-frame cover-silver-shoes project-media" style="padding:0; overflow:hidden;"><img alt="" class="cover-pair-media" decoding="async" loading="lazy" src="assets/silver%20shoes.png"/></div>
+<div class="cover-pair-frame cover-branding-video project-media" style="padding:0; overflow:hidden;"><video class="cover-pair-media" autoplay loop muted playsinline preload="auto"><source src="assets/branding.mp4" type="video/mp4"></video></div>
+</div>
+<div class="project-copy cover-wordmark-desc" style="grid-column: 6 / span 5; grid-row: 6;">
+<div id="p5-wordmark-desc-ru">
+<p class="ph-body">Логотип построен на&nbsp;массивном гротеске, словно частично накрытом тканью. Воображаемый материал проходит поверх букв, давит на&nbsp;их&nbsp;контуры и&nbsp;создаёт локальные деформации. Слово остаётся читаемым, но&nbsp;перестаёт быть нейтральной типографикой.</p>
+<p class="ph-body">Искажение работает как&nbsp;правило, а&nbsp;не&nbsp;декоративный эффект. Оно возникает только в&nbsp;местах предполагаемого наложения ткани и&nbsp;показывает взаимодействие двух сред: устойчивой типографической основы и&nbsp;подвижного материала. Благодаря этому знак можно развивать в&nbsp;динамике, графике и&nbsp;композициях, меняя положение «покрывающего» слоя, но&nbsp;сохраняя узнаваемый принцип.</p>
+</div>
+<div id="p5-wordmark-desc-en" style="display:none;">
+<p class="ph-body">The wordmark is built around a bold grotesque typeface that appears to be partially draped in fabric. An imagined layer passes over the letters, pressing into their contours and creating subtle, localized distortions. The word remains legible, but the typography no longer feels neutral or static.</p>
+<p class="ph-body">The distortion functions as a system rather than a decorative effect. It appears only where the fabric is imagined to overlap the letterforms, capturing the interaction between a solid typographic structure and a soft, shifting material. This principle allows the wordmark to evolve across motion, graphics, and compositions: the position of the covering layer can change while the underlying visual logic remains recognizable.</p>
+</div>
+</div>
+<div class="cover-colors-media project-media" style="grid-column: 1 / span 10; grid-row: 7; padding:0; overflow:hidden;"><video class="pd-media cover-colors-video" autoplay loop muted playsinline preload="auto"><source src="assets/cover%20colors.mp4" type="video/mp4"></video></div>
+<div class="cover-labels-media project-media" style="grid-column: 4 / span 7; grid-row: 8; padding:0; overflow:hidden;"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/cover%20labels.png"/></div>
+<div class="project-copy cover-system-desc" style="grid-column: 6 / span 5; grid-row: 9;">
+<div id="p5-system-desc-ru">
+<p class="ph-body">Визуальная система продолжает логику частичного раскрытия. Изображения могут перекрываться полупрозрачными слоями, кадрироваться или появляться фрагментами. Крупные планы ткани, швов, фактур и&nbsp;конструктивных элементов становятся важнее буквальной демонстрации полного образа.</p>
+<p class="ph-body">Главным выразительным инструментом становится контролируемое сокрытие:<br>- фрагмент вместо полного изображения<br>- фактура вместо декоративного паттерна<br>- деформация вместо дополнительного символа<br>- слой вместо плоской поверхности<br>- деталь вместо прямого высказывания.</p>
+</div>
+<div id="p5-system-desc-en" style="display:none;">
+<p class="ph-body">The visual system follows the same logic of partial reveal. Images can be obscured by translucent layers, tightly cropped, or shown only in fragments. Close-up views of fabric, seams, textures, and construction details take precedence over showing a complete look.</p>
+<p class="ph-body">Controlled concealment becomes the brand’s primary expressive device:<br>- fragments rather than complete images;<br>- texture rather than decorative pattern;<br>- distortion rather than an additional symbol;<br>- layers rather than flat surfaces;<br>- details rather than explicit statements.</p>
+</div>
+</div>
+<div class="cover-street-posters-media project-media" style="grid-column: 1 / span 10; grid-row: 10; padding:0; overflow:hidden;"><img alt="" class="pd-media" decoding="async" loading="lazy" src="assets/cover%20street%20posters.png"/></div>
+<div class="project-copy cover-packaging-desc" style="grid-column: 1 / span 3; grid-row: 11;">
+<div id="p5-packaging-desc-ru">
+<p class="ph-body">Упаковка COVER продолжает идею одежды как второго слоя кожи. Она защищает изделие, повторяет его форму и&nbsp;делает материал главным участником взаимодействия.</p>
+<p class="ph-body">Для системы выбраны переработанные материалы, формованная окрашенная пульпа и&nbsp;многоразовые вакуумные пакеты. Пульпа создаёт прочную рельефную оболочку с&nbsp;естественной неоднородной фактурой. Вакуумный пакет, напротив, плотно облегает изделие и&nbsp;подчёркивает поверхность ткани, складки и&nbsp;конструкцию вещи. Скрытый внутри продукт остаётся визуально ощутимым&nbsp;— его нельзя увидеть полностью, но&nbsp;можно прочитать через контур и&nbsp;материал.</p>
+<p class="ph-body">Сжатая упаковка уменьшает занимаемый объём и&nbsp;может использоваться повторно для хранения и&nbsp;транспортировки одежды.</p>
+</div>
+<div id="p5-packaging-desc-en" style="display:none;">
+<p class="ph-body">COVER’s packaging extends the idea of clothing as a second skin. It protects the garment, conforms to its shape, and makes the material itself central to the experience.</p>
+<p class="ph-body">The system uses recycled materials, dyed molded pulp, and reusable vacuum bags. The molded pulp forms a durable, sculpted shell with a naturally irregular texture. In contrast, the vacuum bag wraps tightly around the garment, drawing attention to the fabric’s surface, folds, and construction. Though concealed inside, the piece retains a visible presence: it cannot be seen in full, but its form can be read through its contours and material.</p>
+<p class="ph-body">The compressed packaging reduces storage volume and can be reused to store or transport clothing.</p>
+</div>
+</div>
+<div class="cover-pack-media project-media" style="grid-column: 4 / span 7; grid-row: 11; padding:0; overflow:hidden;"><video class="pd-media" autoplay loop muted playsinline preload="auto"><source src="assets/cover%20pack.mp4" type="video/mp4"></video></div>
+<div class="project-media-pair cover-pair-02" style="grid-column: 1 / span 10; grid-row: 12;">
+<div class="cover-pair-frame cover-stand-media project-media" style="padding:0; overflow:hidden;"><img alt="" class="cover-pair-media" decoding="async" loading="lazy" src="assets/cover%20stand.png"/></div>
+<div class="cover-pair-frame cover-girl-media project-media" style="padding:0; overflow:hidden;"><img alt="" class="cover-pair-media" decoding="async" loading="lazy" src="assets/cover%20girl.png"/></div>
+</div>
+<div class="project-copy cover-unboxing-desc" style="grid-column: 3 / span 6; grid-row: 13;">
+<div id="p5-unboxing-desc-ru">
+<p class="ph-body">Распаковка строится как постепенное раскрытие. Покупатель снимает один слой за&nbsp;другим, приближаясь к&nbsp;вещи через фактуру, форму и&nbsp;тактильный контакт. Упаковка не&nbsp;предвосхищает продукт яркой декоративностью&nbsp;— она создаёт момент ожидания и&nbsp;усиливает ценность того, что находится внутри.</p>
+</div>
+<div id="p5-unboxing-desc-en" style="display:none;">
+<p class="ph-body">The unboxing experience unfolds as a gradual reveal. The customer removes each layer in turn, discovering the garment through texture, form, and touch. Rather than competing with the product through bold decoration, the packaging creates a sense of anticipation and heightens the value of what lies within.</p>
+</div>
+</div>
+<div class="project-media-pair cover-pair-03" style="grid-column: 1 / span 10; grid-row: 14;">
+<div class="cover-pair-frame cover-smashed-media project-media" style="padding:0; overflow:hidden;"><img alt="" class="cover-pair-media" decoding="async" loading="lazy" src="assets/cover%20smashed.jpg"/></div>
+<div class="cover-pair-frame cover-stone-blue-media project-media" style="padding:0; overflow:hidden;"><img alt="" class="cover-pair-media" decoding="async" loading="lazy" src="assets/%D0%BA%D0%B0%D0%BC%D0%B5%D0%BD%D1%8C5558.png"/></div>
+</div>
+<div class="project-copy cover-result-desc" style="grid-column: 1 / span 5; grid-row: 15;">
+<div id="p5-result-desc-ru">
+<p class="ph-body">Результатом стала концепция бренда, в&nbsp;которой название, одежда, логотип и&nbsp;упаковка подчинены одному принципу. COVER не&nbsp;использует тайну как отвлечённый образ: она проявляется в&nbsp;деформации букв, наложении слоёв, фрагментарной подаче и&nbsp;способе упаковки изделия. Узнаваемость может возникать не&nbsp;из&nbsp;добавления новых знаков, а&nbsp;из&nbsp;одного точно сформулированного правила. В&nbsp;случае COVER таким правилом стало наложение: скрывая часть формы, оно помогает увидеть её&nbsp;острее.</p>
+</div>
+<div id="p5-result-desc-en" style="display:none;">
+<p class="ph-body">The result is a brand concept in which the name, clothing, wordmark, and packaging all follow a single principle. For COVER, mystery is more than an abstract idea—it takes shape through distorted letterforms, overlapping layers, fragmented imagery, and the way each garment is packaged. Recognition does not always require more symbols. It can grow from one clearly defined rule. For COVER, that rule is overlap: by concealing part of the form, the identity brings the rest into sharper focus.</p>
+</div>
+</div>
+</div><!-- /pd-master-grid -->
+</div><!-- /pd-section pd-hero -->
+</div><!-- /detail-content -->
+</div><!-- /detail-page -->
+</div><!-- /page-p5 -->
+<!-- ══════ PROJECT 06 ══════ -->
+<div class="page" id="page-p7">
+  <nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home"><a data-en="PROJECTS" data-ru="ПРОЕКТЫ" href="#" onclick="return false;">PROJECTS</a></div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.25);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+
+<div class="nav-next"><a href="#" onclick="showProject('p4');return false;" data-ru="СЛЕДУЮЩИЙ ПРОЕКТ" data-en="NEXT PROJECT">NEXT PROJECT</a></div>
+</nav>
+  <div class="detail-page">
+    <div class="detail-content">
+      <div class="pd-section pd-hero">
+        <div class="pd-grid pd-master-grid">
+<div class="pd-text pd-span-3 pd-hero-desc project-copy" style="grid-column: 1 / span 3; grid-row: 1;">
+            <div id="p7-desc-ru">
+              <p class="ph-body">UNDERDOG&nbsp;&mdash; концепция независимого арт-пространства для&nbsp;авторов, чьи работы не&nbsp;вписываются в&nbsp;привычные категории.</p>
+              <p class="ph-body">Пространство задумано как&nbsp;точка встречи для&nbsp;художников, перформеров и&nbsp;других независимых авторов. Здесь можно свободно экспериментировать, показывать незавершённые работы, находить единомышленников, обмениваться идеями и&nbsp;развиваться без&nbsp;необходимости делать своё искусство более удобным для&nbsp;аудитории.</p>
+              <p class="ph-body">Название UNDERDOG переосмысляет положение аутсайдера. Внутри сообщества оно перестаёт быть обозначением слабости и&nbsp;становится общей идентичностью.</p>
+            </div>
+            <div id="p7-desc-en" style="display:none;">
+              <p class="ph-body">UNDERDOG is a concept for an independent art space dedicated to artists whose work resists conventional categories.</p>
+              <p class="ph-body">Conceived as a meeting point for visual artists, performers, and other independent creatives, it offers a place to experiment freely, share unfinished work, find like-minded people, exchange ideas, and grow without having to make art more palatable to an audience.</p>
+              <p class="ph-body">The name UNDERDOG reclaims the position of the outsider. Within the community, it no longer signals weakness&mdash;it becomes a shared identity.</p>
+            </div>
+          </div>
+          <div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;" data-ru="[HAI] TALK" data-en="[HAI] TALK">[HAI] TALK</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">FOLLOW ME</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">IN THE RHYTHM OF DAYS</a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></li>
+<li><a class="proj-link proj-index-current" href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG POSTERS</a></li>
+<li><a class="proj-link" href="#" onclick="return false;" data-ru="МУЗЕЙ Х. ТЕР-АРУТЮНЯНА" data-en="K. TER-HARUTYUNYAN MUSEUM">K. TER-HARUTYUNYAN MUSEUM</a></li>
+</ul>
+          </div>
+          <div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+            <ul class="ph-tags">
+              <li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+              <li><span data-ru="Дизайн постеров" data-en="Poster Design">Poster Design</span></li>
+              <li><span data-ru="Типографика" data-en="Typography">Typography</span></li>
+            </ul>
+          </div>
+          <div class="pd-frame mobile-first-project-image" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;">
+            <img src="assets/underdogpostershero.png" alt="UNDERDOG Poster Hero" style="width:100%;height:100%;object-fit:contain !important;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame pd-span-5 project-media p7-intro-media" style="grid-column: 1 / span 5; grid-row: 2; padding:0; overflow:hidden;">
+            <video class="pd-media" autoplay loop muted playsinline preload="auto">
+              <source src="assets/underdog-generated-01.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="project-copy p7-approach-copy" style="grid-column: 6 / span 5; grid-row: 2;">
+            <div id="p7-approach-copy-ru">
+              <p class="ph-body">Традиционная реклама культурных событий старается заранее объяснить зрителю, что он&nbsp;увидит и&nbsp;как&nbsp;это следует воспринимать. Для&nbsp;UNDERDOG такой подход противоречил&nbsp;бы самой идее пространства. Плакаты должны были вызывать реакцию до&nbsp;того, как&nbsp;становился понятен их&nbsp;смысл, и&nbsp;оставлять место для&nbsp;интерпретации.</p>
+              <p class="ph-body">Вместо единого шаблона я&nbsp;разработала три самостоятельные серии плакатов. У&nbsp;каждой своя функция, степень визуальной интенсивности и&nbsp;способ взаимодействия со&nbsp;зрителем.</p>
+            </div>
+            <div id="p7-approach-copy-en" style="display:none;">
+              <p class="ph-body">Traditional advertising for cultural events tends to tell audiences in advance what they are about to see and how they should interpret it. For UNDERDOG, that approach would contradict the very idea of the space. The posters needed to provoke a response before their meaning became clear, leaving room for personal interpretation.</p>
+              <p class="ph-body">Rather than relying on a single template, I developed three distinct poster series. Each serves a different purpose, uses its own level of visual intensity, and creates a different kind of encounter with the viewer.</p>
+            </div>
+          </div>
+          <div class="pd-frame pd-span-10 project-media p7-billboard-media" style="grid-column: 1 / span 10; grid-row: 3; padding:0; overflow:hidden;">
+            <img src="assets/coverabsurdwall.jpg" alt="UNDERDOG poster billboards" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="project-copy p7-absurdity-copy" style="grid-column: 1 / span 5; grid-row: 4;">
+            <div id="p7-absurdity-copy-ru">
+              <p class="ph-body"><strong>1. Красота абсурда</strong></p>
+              <p class="ph-body">Первая серия формирует характер пространства. UNDERDOG&nbsp;— громкий, импульсивный и&nbsp;намеренно неудобный.</p>
+              <p class="ph-body">Плакаты построены на&nbsp;столкновении изображений, между которыми нет логической связи: пикселизированных портретов, найденных предметов, животных, повторяющихся человеческих фигур и&nbsp;обрывков цифровой графики. Они не&nbsp;складываются в&nbsp;последовательный сюжет. Смысл возникает через ассоциации, конфликт и&nbsp;абсурд.</p>
+            </div>
+            <div id="p7-absurdity-copy-en" style="display:none;">
+              <p class="ph-body"><strong>1. The Beauty of Absurdity</strong></p>
+              <p class="ph-body">The first series establishes the character of the space. UNDERDOG is loud, impulsive, and deliberately confrontational.</p>
+              <p class="ph-body">The posters collide images with no obvious logical connection: pixelated portraits, found objects, animals, repeated human figures, and fragments of digital graphics. Rather than forming a linear narrative, they generate meaning through association, tension, and absurdity.</p>
+            </div>
+          </div>
+          <div class="project-media p7-couch-model" style="grid-column: 6 / span 5; grid-row: 4; padding:0; overflow:hidden;">
+            <model-viewer
+              src="assets/couch-scene.glb"
+              alt="3D-сцена: диван с плакатом"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              shadow-intensity="0"
+              exposure="0.8"
+              camera-orbit="35deg 75deg 3m"
+              min-camera-orbit="auto 40deg 0.9m"
+              max-camera-orbit="auto 100deg 3m"
+              field-of-view="30deg"
+              style="width:100%;height:100%;display:block;background:#7DAC27;"
+            ></model-viewer>
+          </div>
+          <div class="pd-frame pd-span-10 project-media p7-posterwall-media" style="grid-column: 1 / span 10; grid-row: 5; padding:0; overflow:hidden;">
+            <img src="assets/wallposters.jpg" alt="UNDERDOG poster wall" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="project-media-pair p7-pair-01" style="grid-column: 1 / span 10; grid-row: 6;">
+            <div class="project-media"><img src="assets/underdogmark.jpg" alt="UNDERDOG poster print process" /></div>
+            <div class="project-media"><img src="assets/poster3.png" alt="UNDERDOG FATALITY poster printing" /></div>
+          </div>
+          <div class="project-media p7-redposter-media" style="grid-column: 1 / span 5; grid-row: 7;">
+            <img src="assets/redposter.png" alt="UNDERDOG GATHERING poster on wall" />
+          </div>
+          <div class="project-copy p7-immersive-copy" style="grid-column: 6 / span 5; grid-row: 7;">
+            <div id="p7-immersive-copy-ru">
+              <p class="ph-body"><strong>2. Иммерсивные спектакли</strong></p>
+              <p class="ph-body">Вторая серия анонсирует программу иммерсивных спектаклей. Здесь визуальный язык становится сдержаннее, а&nbsp;напряжение возникает из&nbsp;пустоты и&nbsp;недосказанности.</p>
+              <p class="ph-body">Каждый плакат строится вокруг фрагментарного образа. Анатомические схемы, технические чертежи и&nbsp;неопределённые структуры выглядят как&nbsp;подсказки, значение которых можно понять только внутри спектакля. Плакаты создают ожидание опыта, который невозможно получить со&nbsp;стороны.</p>
+            </div>
+            <div id="p7-immersive-copy-en" style="display:none;">
+              <p class="ph-body"><strong>2. Immersive Performances</strong></p>
+              <p class="ph-body">The second series promotes a program of immersive performances. Here, the visual language becomes more restrained, with tension emerging through negative space and ambiguity.</p>
+              <p class="ph-body">Each poster is built around a fragmented image. Anatomical diagrams, technical drawings, and unfamiliar structures act as clues whose meaning can only be understood from within the performance. Rather than revealing the experience in advance, the posters create anticipation for something that cannot be fully grasped from the outside.</p>
+            </div>
+          </div>
+          <div class="pd-frame pd-span-10 project-media p7-avtorwall-media" style="grid-column: 1 / span 10; grid-row: 8; padding:0; overflow:hidden;">
+            <img src="assets/avtorwall.jpg" alt="UNDERDOG Art is created in emptiness poster wall" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="project-media p7-artistwoman-media" style="grid-column: 1 / span 5; grid-row: 9;">
+            <img src="assets/artistwoman.jpg" alt="Artist with UNDERDOG poster" />
+          </div>
+          <div class="project-copy p7-artists-copy" style="grid-column: 6 / span 5; grid-row: 9;">
+            <div id="p7-artists-copy-ru">
+              <p class="ph-body"><strong>3. Сделать авторов видимыми</strong></p>
+              <p class="ph-body">Третья серия посвящена художникам, которые стоят за&nbsp;сообществом. Личность художника раскрывается через созданный им визуальный язык. В&nbsp;композициях появляется много пустого пространства. Оно напоминает об&nbsp;отсутствии аудитории, но&nbsp;одновременно воспринимается как&nbsp;свободное поле, в&nbsp;котором может возникнуть новое высказывание.</p>
+              <p class="ph-body">Фраза &laquo;Art is created in emptiness&raquo; связывает одиночество творческого процесса с&nbsp;его потенциалом. Дополнительное обращение &laquo;Meet the artist, become one&raquo; разрушает привычную дистанцию между автором и&nbsp;зрителем: аудитории предлагают стать участником, а&nbsp;не&nbsp;наблюдателем.</p>
+            </div>
+            <div id="p7-artists-copy-en" style="display:none;">
+              <p class="ph-body"><strong>3. Making Artists Visible</strong></p>
+              <p class="ph-body">The third series focuses on the artists behind the community. Rather than relying on conventional portraiture, it reveals each artist through the visual language they create.</p>
+              <p class="ph-body">The compositions use generous negative space. It suggests the absence of an audience, yet also becomes an open field where a new statement can take shape.</p>
+              <p class="ph-body">The phrase &ldquo;Art is created in emptiness&rdquo; connects the solitude of the creative process with its potential. A second invitation&mdash;&ldquo;Meet the artist, become one&rdquo;&mdash;breaks down the familiar distance between artist and viewer, asking the audience to participate rather than simply observe.</p>
+            </div>
+          </div>
+          <div class="project-media-pair p7-pair-02" style="grid-column: 1 / span 10; grid-row: 10;">
+            <div class="project-media p7-column-model">
+              <model-viewer
+                src="assets/column-scene.glb"
+                alt="3D-сцена: колонна на платформе"
+                camera-controls
+                auto-rotate
+                auto-rotate-delay="0"
+                shadow-intensity="0"
+                exposure="0.8"
+                camera-orbit="35deg 75deg auto"
+                min-camera-orbit="auto 40deg 1.2m"
+                max-camera-orbit="auto 100deg 5m"
+                field-of-view="30deg"
+                style="width:100%;height:100%;display:block;background:#EDFE35;"
+              ></model-viewer>
+            </div>
+            <div class="project-media"><img src="assets/poster7.png" alt="UNDERDOG Art is created in emptiness poster on chair" /></div>
+          </div>
+          <div class="project-copy p7-conclusion-copy" style="grid-column: 1 / span 5; grid-row: 11;">
+            <div id="p7-conclusion-copy-ru">
+              <p class="ph-body">Три серии показывают UNDERDOG с&nbsp;разных сторон: как&nbsp;культурную позицию, сообщество авторов и&nbsp;площадку для&nbsp;экспериментальных событий.</p>
+              <p class="ph-body">Проект исследует, насколько разными могут быть голоса внутри одной идентичности. Их&nbsp;цельность строится не&nbsp;на&nbsp;одинаковом шаблоне, а&nbsp;на&nbsp;общем отношении к&nbsp;коммуникации: не&nbsp;объяснять искусство заранее, не&nbsp;сглаживать противоречия и&nbsp;не&nbsp;лишать зрителя возможности увидеть собственный смысл.</p>
+            </div>
+            <div id="p7-conclusion-copy-en" style="display:none;">
+              <p class="ph-body">The three series present UNDERDOG from different perspectives: as a cultural stance, a community of artists, and a platform for experimental events.</p>
+              <p class="ph-body">The project explores how distinct voices can coexist within a single identity. Its cohesion does not come from a shared template, but from a common approach to communication: resisting the urge to explain art in advance, preserving its contradictions, and leaving viewers free to find their own meaning.</p>
+            </div>
+          </div>
+        </div><!-- /pd-master-grid -->
+      </div><!-- /pd-section pd-hero -->
+    </div><!-- /detail-content -->
+  </div><!-- /detail-page -->
+</div><!-- /page-p7 -->
+<script>
+window.currentLang = 'en';
+
+function copyEmail() {
+  navigator.clipboard.writeText('harmstanta@gmail.com').then(() => {
+    const lang = navigator.language || navigator.userLanguage || 'en';
+    const code = lang.toLowerCase().split('-')[0];
+    const messages = {
+      'ru': 'Адрес скопирован',
+      'en': 'Email copied',
+      'it': 'Email copiata',
+      'fr': 'Email copié',
+      'de': 'E-Mail kopiert',
+      'es': 'Email copiado',
+      'pt': 'Email copiado',
+      'pl': 'Email skopiowany',
+      'nl': 'E-mail gekopieerd',
+      'tr': 'E-posta kopyalandı',
+      'ja': 'メールをコピーしました',
+      'zh': '邮箱已复制',
+      'ko': '이메일 복사됨',
+      'ar': 'تم نسخ البريد الإلكتروني',
+      'uk': 'Адресу скопійовано',
+    };
+    const msg = window.currentLang === 'ru' ? 'Email скопирован' : 'Email copied';
+
+    let toast = document.getElementById('copy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'copy-toast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1A1A1A;
+        color: #F1F1F1;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 9px;
+        line-height: 13px;
+        padding: 5px 12px;
+        border-radius: 2px;
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+        text-transform: none;
+        letter-spacing: 0.03em;
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  });
+}
+
+let contactsOpenTimer = null;
+let contactsCloseTimer = null;
+let contactsOpeningTimer = null;
+
+function setContactsOpen(isOpen) {
+  const d = document.getElementById('contacts-dropdown');
+  const w = document.querySelector('.contacts-wrap');
+  const b = document.getElementById('contacts-btn');
+  clearTimeout(contactsCloseTimer);
+  clearTimeout(contactsOpeningTimer);
+
+  if (isOpen) {
+    if (w) {
+      w.classList.remove('closing');
+      w.classList.add('opening');
+      w.classList.add('open');
+    }
+    if (d) {
+      d.classList.add('opening');
+      d.classList.add('open');
+    }
+    contactsOpeningTimer = setTimeout(() => {
+      if (w) w.classList.remove('opening');
+      if (d) d.classList.remove('opening');
+    }, 3000);
+  } else {
+    if (w) w.classList.remove('opening');
+    if (d) d.classList.remove('opening');
+    if (d) d.classList.remove('open');
+    if (w) {
+      w.classList.add('closing');
+      contactsCloseTimer = setTimeout(() => {
+        w.classList.remove('open');
+        w.classList.remove('closing');
+      }, 2200);
+    }
+  }
+
+  if (b) b.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function toggleContacts() {
+  clearTimeout(contactsOpenTimer);
+  contactsOpenTimer = null;
+  const d = document.getElementById('contacts-dropdown');
+  setContactsOpen(!(d && d.classList.contains('open')));
+}
+
+function openContacts() {
+  setContactsOpen(true);
+}
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-ru][data-en]').forEach(el => {
+    const year = el.querySelector('.work-year');
+    el.childNodes[0].textContent = el.getAttribute('data-' + lang);
+    if (year && !year.previousSibling?.textContent?.endsWith(' ')) {
+      el.childNodes[0].textContent = el.getAttribute('data-' + lang) + ' ';
+    }
+  });
+}
+
+function switchPage(targetId) {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  target.classList.add('active');
+  window.scrollTo(0, 0);
+  target.scrollTop = 0;
+}
+
+function showProject(id) {
+  switchPage('page-' + id);
+  applyLang(window.currentLang);
+  // Init mobile next labels
+  if (window.innerWidth <= 768) {
+    const lang = window.currentLang;
+    document.querySelectorAll('.mobile-next-en').forEach(el => el.style.display = lang === 'en' ? 'inline' : 'none');
+    document.querySelectorAll('.mobile-next-ru').forEach(el => el.style.display = lang === 'ru' ? 'inline' : 'none');
+  }
+  // Highlight current project in nav lists
+  document.querySelectorAll('.nav-proj-list li a').forEach(a => {
+    a.classList.remove('nav-current');
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'")) {
+      a.classList.add('nav-current');
+    }
+  });
+}
+function showHome() {
+  switchPage('page-home');
+  applyLang(window.currentLang);
+}
+function setLang(lang) {
+  window.currentLang = lang;
+  const ru = document.getElementById('lang-ru');
+  const en = document.getElementById('lang-en');
+  const about = document.getElementById('nav-about');
+  const bioEn = document.getElementById('bio-en');
+  const bioRu = document.getElementById('bio-ru');
+  const workEn = document.getElementById('worklist-en');
+  const workRu = document.getElementById('worklist-ru');
+  const descP3ru = document.getElementById('desc-p3-ru');
+  const descP3en = document.getElementById('desc-p3-en');
+  const descP7ru = document.getElementById('desc-p7-ru');
+  const descP7en = document.getElementById('desc-p7-en');
+  const descP5ru = document.getElementById('desc-p5-ru');
+  const descP5en = document.getElementById('desc-p5-en');
+  const descP2ru = document.getElementById('desc-p2-ru');
+  const descP2en = document.getElementById('desc-p2-en');
+  const descP6ru = document.getElementById('desc-p6-ru');
+  const descP6en = document.getElementById('desc-p6-en');
+  const descP4ru = document.getElementById('desc-p4-ru');
+  const descP4en = document.getElementById('desc-p4-en');
+  const descP8ru = document.getElementById('desc-p8-ru');
+  const descP8en = document.getElementById('desc-p8-en');
+  const skillsEn = document.getElementById('skills-label-en');
+  const skillsRu = document.getElementById('skills-label-ru');
+  if (lang === 'ru') {
+    ru.style.background='#FFFFFF'; ru.style.color='#1A1A1A';
+    en.style.background='transparent'; en.style.color='#1A1A1A';
+    document.querySelectorAll('.skills-label-en-proj').forEach(el => el.style.display='none');
+    document.querySelectorAll('.skills-label-ru-proj').forEach(el => { el.style.display='inline-block'; });
+    if (about) about.textContent='ПРОЕКТЫ';
+    document.querySelectorAll('.mobile-next-en').forEach(el => el.style.display='none');
+    document.querySelectorAll('.mobile-next-ru').forEach(el => el.style.display='none');
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.mobile-next-ru').forEach(el => el.style.display='inline');
+    }
+    document.querySelectorAll('.nav-proj-list-en, .nav-proj-en').forEach(el => el.style.display='none');
+    document.querySelectorAll('.nav-proj-list-ru, .nav-proj-ru').forEach(el => el.style.display='block');
+    const enNav = document.getElementById('worklist-en-nav');
+    const ruNav = document.getElementById('worklist-ru-nav');
+    if (enNav) enNav.style.display='none';
+    if (ruNav) ruNav.style.display='block';
+    const clEn = document.getElementById('contacts-label-en');
+    const clRu = document.getElementById('contacts-label-ru');
+    if (clEn) clEn.style.display='none';
+    if (clRu) {
+      clRu.style.display='inline-block';
+      clRu.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      clRu.style.setProperty('font-size', '14px', 'important');
+    }
+    if (bioEn) bioEn.style.display='none';
+    if (bioRu) bioRu.style.display='block';
+    if (workEn) workEn.style.display='none';
+    if (workRu) workRu.style.display='block';
+    if (descP3ru) descP3ru.style.display='block';
+    if (descP3en) descP3en.style.display='none';
+    if (descP7ru) descP7ru.style.display='block';
+    if (descP7en) descP7en.style.display='none';
+    if (descP5ru) descP5ru.style.display='block';
+    if (descP5en) descP5en.style.display='none';
+    if (descP2ru) descP2ru.style.display='block';
+    if (descP2en) descP2en.style.display='none';
+    const p2descRu = document.getElementById('p2-desc-ru');
+    const p2descEn = document.getElementById('p2-desc-en');
+    if (p2descRu) p2descRu.style.display='block';
+    if (p2descEn) p2descEn.style.display='none';
+    const p2methodCopyRu = document.getElementById('p2-method-copy-ru');
+    const p2methodCopyEn = document.getElementById('p2-method-copy-en');
+    if (p2methodCopyRu) p2methodCopyRu.style.display='block';
+    if (p2methodCopyEn) p2methodCopyEn.style.display='none';
+    const p2VisualLanguageCopyRu = document.getElementById('p2-visual-language-copy-ru');
+    const p2VisualLanguageCopyEn = document.getElementById('p2-visual-language-copy-en');
+    if (p2VisualLanguageCopyRu) p2VisualLanguageCopyRu.style.display='block';
+    if (p2VisualLanguageCopyEn) p2VisualLanguageCopyEn.style.display='none';
+    const p2ReaderTraceCopyRu = document.getElementById('p2-reader-trace-copy-ru');
+    const p2ReaderTraceCopyEn = document.getElementById('p2-reader-trace-copy-en');
+    if (p2ReaderTraceCopyRu) p2ReaderTraceCopyRu.style.display='block';
+    if (p2ReaderTraceCopyEn) p2ReaderTraceCopyEn.style.display='none';
+    const p2ConclusionCopyRu = document.getElementById('p2-conclusion-copy-ru');
+    const p2ConclusionCopyEn = document.getElementById('p2-conclusion-copy-en');
+    if (p2ConclusionCopyRu) p2ConclusionCopyRu.style.display='block';
+    if (p2ConclusionCopyEn) p2ConclusionCopyEn.style.display='none';
+    const p3descRu = document.getElementById('p3-desc-ru');
+    const p3descEn = document.getElementById('p3-desc-en');
+    if (p3descRu) p3descRu.style.display='block';
+    if (p3descEn) p3descEn.style.display='none';
+    const p4descRu = document.getElementById('p4-desc-ru');
+    const p4descEn = document.getElementById('p4-desc-en');
+    if (p4descRu) p4descRu.style.display='block';
+    if (p4descEn) p4descEn.style.display='none';
+    const p4ContextCopyRu = document.getElementById('p4-context-copy-ru');
+    const p4ContextCopyEn = document.getElementById('p4-context-copy-en');
+    if (p4ContextCopyRu) p4ContextCopyRu.style.display='block';
+    if (p4ContextCopyEn) p4ContextCopyEn.style.display='none';
+    const p4ChallengeCopyRu = document.getElementById('p4-challenge-copy-ru');
+    const p4ChallengeCopyEn = document.getElementById('p4-challenge-copy-en');
+    if (p4ChallengeCopyRu) p4ChallengeCopyRu.style.display='block';
+    if (p4ChallengeCopyEn) p4ChallengeCopyEn.style.display='none';
+    const p4NameCopyRu = document.getElementById('p4-name-copy-ru');
+    const p4NameCopyEn = document.getElementById('p4-name-copy-en');
+    if (p4NameCopyRu) p4NameCopyRu.style.display='block';
+    if (p4NameCopyEn) p4NameCopyEn.style.display='none';
+    const p4FormatCopyRu = document.getElementById('p4-format-copy-ru');
+    const p4FormatCopyEn = document.getElementById('p4-format-copy-en');
+    if (p4FormatCopyRu) p4FormatCopyRu.style.display='block';
+    if (p4FormatCopyEn) p4FormatCopyEn.style.display='none';
+    const p4LongreadCopyRu = document.getElementById('p4-longread-copy-ru');
+    const p4LongreadCopyEn = document.getElementById('p4-longread-copy-en');
+    if (p4LongreadCopyRu) p4LongreadCopyRu.style.display='block';
+    if (p4LongreadCopyEn) p4LongreadCopyEn.style.display='none';
+    const p4MediaenvCopyRu = document.getElementById('p4-mediaenv-copy-ru');
+    const p4MediaenvCopyEn = document.getElementById('p4-mediaenv-copy-en');
+    if (p4MediaenvCopyRu) p4MediaenvCopyRu.style.display='block';
+    if (p4MediaenvCopyEn) p4MediaenvCopyEn.style.display='none';
+    const p4ScalabilityCopyRu = document.getElementById('p4-scalability-copy-ru');
+    const p4ScalabilityCopyEn = document.getElementById('p4-scalability-copy-en');
+    if (p4ScalabilityCopyRu) p4ScalabilityCopyRu.style.display='block';
+    if (p4ScalabilityCopyEn) p4ScalabilityCopyEn.style.display='none';
+    const p4OutcomeCopyRu = document.getElementById('p4-outcome-copy-ru');
+    const p4OutcomeCopyEn = document.getElementById('p4-outcome-copy-en');
+    if (p4OutcomeCopyRu) p4OutcomeCopyRu.style.display='block';
+    if (p4OutcomeCopyEn) p4OutcomeCopyEn.style.display='none';
+    const p3calendarCopyRu = document.getElementById('p3-calendar-copy-ru');
+    const p3calendarCopyEn = document.getElementById('p3-calendar-copy-en');
+    if (p3calendarCopyRu) p3calendarCopyRu.style.display='block';
+    if (p3calendarCopyEn) p3calendarCopyEn.style.display='none';
+    const p3environmentCopyRu = document.getElementById('p3-environment-copy-ru');
+    const p3environmentCopyEn = document.getElementById('p3-environment-copy-en');
+    if (p3environmentCopyRu) p3environmentCopyRu.style.display='block';
+    if (p3environmentCopyEn) p3environmentCopyEn.style.display='none';
+    const p3tensionCopyRu = document.getElementById('p3-tension-copy-ru');
+    const p3tensionCopyEn = document.getElementById('p3-tension-copy-en');
+    if (p3tensionCopyRu) p3tensionCopyRu.style.display='block';
+    if (p3tensionCopyEn) p3tensionCopyEn.style.display='none';
+    const p5descRu = document.getElementById('p5-desc-ru');
+    const p5descEn = document.getElementById('p5-desc-en');
+    if (p5descRu) p5descRu.style.display='block';
+    if (p5descEn) p5descEn.style.display='none';
+    const p5logoDescRu = document.getElementById('p5-logo-desc-ru');
+    const p5logoDescEn = document.getElementById('p5-logo-desc-en');
+    if (p5logoDescRu) p5logoDescRu.style.display='block';
+    if (p5logoDescEn) p5logoDescEn.style.display='none';
+    const p5stoneDescRu = document.getElementById('p5-stone-desc-ru');
+    const p5stoneDescEn = document.getElementById('p5-stone-desc-en');
+    if (p5stoneDescRu) p5stoneDescRu.style.display='block';
+    if (p5stoneDescEn) p5stoneDescEn.style.display='none';
+    const p5wordmarkDescRu = document.getElementById('p5-wordmark-desc-ru');
+    const p5wordmarkDescEn = document.getElementById('p5-wordmark-desc-en');
+    if (p5wordmarkDescRu) p5wordmarkDescRu.style.display='block';
+    if (p5wordmarkDescEn) p5wordmarkDescEn.style.display='none';
+    const p5systemDescRu = document.getElementById('p5-system-desc-ru');
+    const p5systemDescEn = document.getElementById('p5-system-desc-en');
+    if (p5systemDescRu) p5systemDescRu.style.display='block';
+    if (p5systemDescEn) p5systemDescEn.style.display='none';
+    const p5packagingDescRu = document.getElementById('p5-packaging-desc-ru');
+    const p5packagingDescEn = document.getElementById('p5-packaging-desc-en');
+    if (p5packagingDescRu) p5packagingDescRu.style.display='block';
+    if (p5packagingDescEn) p5packagingDescEn.style.display='none';
+    const p5unboxingDescRu = document.getElementById('p5-unboxing-desc-ru');
+    const p5unboxingDescEn = document.getElementById('p5-unboxing-desc-en');
+    if (p5unboxingDescRu) p5unboxingDescRu.style.display='block';
+    if (p5unboxingDescEn) p5unboxingDescEn.style.display='none';
+    const p5resultDescRu = document.getElementById('p5-result-desc-ru');
+    const p5resultDescEn = document.getElementById('p5-result-desc-en');
+    if (p5resultDescRu) p5resultDescRu.style.display='block';
+    if (p5resultDescEn) p5resultDescEn.style.display='none';
+    const p5quoteEn = document.getElementById('p5-quote-en');
+    if (p5quoteEn) p5quoteEn.style.display='none';
+    const p5quoteRu = document.getElementById('p5-quote-ru');
+    if (p5quoteRu) p5quoteRu.style.display='block';
+    const p5quote2En = document.getElementById('p5-quote2-en');
+    if (p5quote2En) p5quote2En.style.display='none';
+    const p5quote2Ru = document.getElementById('p5-quote2-ru');
+    if (p5quote2Ru) p5quote2Ru.style.display='block';
+    const p3quoteEn = document.getElementById('p3-quote-en');
+    if (p3quoteEn) p3quoteEn.style.display='none';
+    const p3quoteRu = document.getElementById('p3-quote-ru');
+    if (p3quoteRu) p3quoteRu.style.display='block';
+    const p3quote2En = document.getElementById('p3-quote2-en');
+    if (p3quote2En) p3quote2En.style.display='none';
+    const p3quote2Ru = document.getElementById('p3-quote2-ru');
+    if (p3quote2Ru) p3quote2Ru.style.display='block';
+    const p7descRu = document.getElementById('p7-desc-ru');
+    const p7descEn = document.getElementById('p7-desc-en');
+    if (p7descRu) p7descRu.style.display='block';
+    if (p7descEn) p7descEn.style.display='none';
+    const p7approachCopyRu = document.getElementById('p7-approach-copy-ru');
+    const p7approachCopyEn = document.getElementById('p7-approach-copy-en');
+    if (p7approachCopyRu) p7approachCopyRu.style.display='block';
+    if (p7approachCopyEn) p7approachCopyEn.style.display='none';
+    const p7absurdityCopyRu = document.getElementById('p7-absurdity-copy-ru');
+    const p7absurdityCopyEn = document.getElementById('p7-absurdity-copy-en');
+    if (p7absurdityCopyRu) p7absurdityCopyRu.style.display='block';
+    if (p7absurdityCopyEn) p7absurdityCopyEn.style.display='none';
+    const p7immersiveCopyRu = document.getElementById('p7-immersive-copy-ru');
+    const p7immersiveCopyEn = document.getElementById('p7-immersive-copy-en');
+    if (p7immersiveCopyRu) p7immersiveCopyRu.style.display='block';
+    if (p7immersiveCopyEn) p7immersiveCopyEn.style.display='none';
+    const p7artistsCopyRu = document.getElementById('p7-artists-copy-ru');
+    const p7artistsCopyEn = document.getElementById('p7-artists-copy-en');
+    if (p7artistsCopyRu) p7artistsCopyRu.style.display='block';
+    if (p7artistsCopyEn) p7artistsCopyEn.style.display='none';
+    const p7conclusionCopyRu = document.getElementById('p7-conclusion-copy-ru');
+    const p7conclusionCopyEn = document.getElementById('p7-conclusion-copy-en');
+    if (p7conclusionCopyRu) p7conclusionCopyRu.style.display='block';
+    if (p7conclusionCopyEn) p7conclusionCopyEn.style.display='none';
+    const p8descRu = document.getElementById('p8-desc-ru');
+    const p8descEn = document.getElementById('p8-desc-en');
+    if (p8descRu) p8descRu.style.display='block';
+    if (p8descEn) p8descEn.style.display='none';
+    const p7quoteEn = document.getElementById('p7-quote-en');
+    if (p7quoteEn) p7quoteEn.style.display='none';
+    const p7quoteRu = document.getElementById('p7-quote-ru');
+    if (p7quoteRu) p7quoteRu.style.display='block';
+    const p7quote2En = document.getElementById('p7-quote2-en');
+    if (p7quote2En) p7quote2En.style.display='none';
+    const p7quote2Ru = document.getElementById('p7-quote2-ru');
+    if (p7quote2Ru) p7quote2Ru.style.display='block';
+    const p7quote3En = document.getElementById('p7-quote3-en');
+    if (p7quote3En) p7quote3En.style.display='none';
+    const p7quote3Ru = document.getElementById('p7-quote3-ru');
+    if (p7quote3Ru) p7quote3Ru.style.display='block';
+    const q2ru = document.getElementById('quote-p2-img-ru');
+    const q2en = document.getElementById('quote-p2-img-en');
+    if (q2ru) q2ru.style.display='block';
+    if (q2en) q2en.style.display='none';
+    const q2ru2 = document.getElementById('quote-p2-ru2');
+    const q2en2 = document.getElementById('quote-p2-en2');
+    if (q2ru2) q2ru2.style.display='block';
+    if (q2en2) q2en2.style.display='none';
+    const q2ru3 = document.getElementById('quote-p2-ru3');
+    const q2en3 = document.getElementById('quote-p2-en3');
+    if (q2ru3) q2ru3.style.display='block';
+    if (q2en3) q2en3.style.display='none';
+    if (descP6ru) descP6ru.style.display='block';
+    if (descP6en) descP6en.style.display='none';
+    if (descP4ru) descP4ru.style.display='block';
+    if (descP4en) descP4en.style.display='none';
+    if (descP8ru) descP8ru.style.display='block';
+    if (descP8en) descP8en.style.display='none';
+    if (skillsEn) skillsEn.style.display='none';
+    if (skillsRu) { skillsRu.style.display='inline-block'; skillsRu.style.setProperty('font-family',"'Times New Roman',Times,serif",'important'); }
+  } else {
+    en.style.background='#FFFFFF'; en.style.color='#1A1A1A';
+    ru.style.background='transparent'; ru.style.color='#1A1A1A';
+    document.querySelectorAll('.skills-label-en-proj').forEach(el => { el.style.display='inline-block'; });
+    document.querySelectorAll('.skills-label-ru-proj').forEach(el => el.style.display='none');
+    if (about) about.textContent='PROJECTS';
+    document.querySelectorAll('.mobile-next-en').forEach(el => el.style.display='none');
+    document.querySelectorAll('.mobile-next-ru').forEach(el => el.style.display='none');
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.mobile-next-en').forEach(el => el.style.display='inline');
+    }
+    document.querySelectorAll('.nav-proj-list-en, .nav-proj-en').forEach(el => el.style.display='block');
+    document.querySelectorAll('.nav-proj-list-ru, .nav-proj-ru').forEach(el => el.style.display='none');
+    const enNav = document.getElementById('worklist-en-nav');
+    const ruNav = document.getElementById('worklist-ru-nav');
+    if (enNav) enNav.style.display='block';
+    if (ruNav) ruNav.style.display='none';
+    const clEn = document.getElementById('contacts-label-en');
+    const clRu = document.getElementById('contacts-label-ru');
+    if (clEn) {
+      clEn.style.display='inline-block';
+      clEn.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      clEn.style.setProperty('font-size', '14px', 'important');
+    }
+    if (clRu) clRu.style.display='none';
+    if (bioEn) bioEn.style.display='block';
+    if (bioRu) bioRu.style.display='none';
+    if (workEn) workEn.style.display='block';
+    if (workRu) workRu.style.display='none';
+    if (descP3ru) descP3ru.style.display='none';
+    if (descP3en) descP3en.style.display='block';
+    if (descP7ru) descP7ru.style.display='none';
+    if (descP7en) descP7en.style.display='block';
+    if (descP5ru) descP5ru.style.display='none';
+    if (descP5en) descP5en.style.display='block';
+    if (descP2ru) descP2ru.style.display='none';
+    if (descP2en) descP2en.style.display='block';
+    const p2descRu = document.getElementById('p2-desc-ru');
+    const p2descEn = document.getElementById('p2-desc-en');
+    if (p2descRu) p2descRu.style.display='none';
+    if (p2descEn) p2descEn.style.display='block';
+    const p2methodCopyRu = document.getElementById('p2-method-copy-ru');
+    const p2methodCopyEn = document.getElementById('p2-method-copy-en');
+    if (p2methodCopyRu) p2methodCopyRu.style.display='none';
+    if (p2methodCopyEn) p2methodCopyEn.style.display='block';
+    const p2VisualLanguageCopyRu = document.getElementById('p2-visual-language-copy-ru');
+    const p2VisualLanguageCopyEn = document.getElementById('p2-visual-language-copy-en');
+    if (p2VisualLanguageCopyRu) p2VisualLanguageCopyRu.style.display='none';
+    if (p2VisualLanguageCopyEn) p2VisualLanguageCopyEn.style.display='block';
+    const p2ReaderTraceCopyRu = document.getElementById('p2-reader-trace-copy-ru');
+    const p2ReaderTraceCopyEn = document.getElementById('p2-reader-trace-copy-en');
+    if (p2ReaderTraceCopyRu) p2ReaderTraceCopyRu.style.display='none';
+    if (p2ReaderTraceCopyEn) p2ReaderTraceCopyEn.style.display='block';
+    const p2ConclusionCopyRu = document.getElementById('p2-conclusion-copy-ru');
+    const p2ConclusionCopyEn = document.getElementById('p2-conclusion-copy-en');
+    if (p2ConclusionCopyRu) p2ConclusionCopyRu.style.display='none';
+    if (p2ConclusionCopyEn) p2ConclusionCopyEn.style.display='block';
+    const p3descRu = document.getElementById('p3-desc-ru');
+    const p3descEn = document.getElementById('p3-desc-en');
+    if (p3descRu) p3descRu.style.display='none';
+    if (p3descEn) p3descEn.style.display='block';
+    const p4descRu = document.getElementById('p4-desc-ru');
+    const p4descEn = document.getElementById('p4-desc-en');
+    if (p4descRu) p4descRu.style.display='none';
+    if (p4descEn) p4descEn.style.display='block';
+    const p4ContextCopyRu = document.getElementById('p4-context-copy-ru');
+    const p4ContextCopyEn = document.getElementById('p4-context-copy-en');
+    if (p4ContextCopyRu) p4ContextCopyRu.style.display='none';
+    if (p4ContextCopyEn) p4ContextCopyEn.style.display='block';
+    const p4ChallengeCopyRu = document.getElementById('p4-challenge-copy-ru');
+    const p4ChallengeCopyEn = document.getElementById('p4-challenge-copy-en');
+    if (p4ChallengeCopyRu) p4ChallengeCopyRu.style.display='none';
+    if (p4ChallengeCopyEn) p4ChallengeCopyEn.style.display='block';
+    const p4NameCopyRu = document.getElementById('p4-name-copy-ru');
+    const p4NameCopyEn = document.getElementById('p4-name-copy-en');
+    if (p4NameCopyRu) p4NameCopyRu.style.display='none';
+    if (p4NameCopyEn) p4NameCopyEn.style.display='block';
+    const p4FormatCopyRu = document.getElementById('p4-format-copy-ru');
+    const p4FormatCopyEn = document.getElementById('p4-format-copy-en');
+    if (p4FormatCopyRu) p4FormatCopyRu.style.display='none';
+    if (p4FormatCopyEn) p4FormatCopyEn.style.display='block';
+    const p4LongreadCopyRu = document.getElementById('p4-longread-copy-ru');
+    const p4LongreadCopyEn = document.getElementById('p4-longread-copy-en');
+    if (p4LongreadCopyRu) p4LongreadCopyRu.style.display='none';
+    if (p4LongreadCopyEn) p4LongreadCopyEn.style.display='block';
+    const p4MediaenvCopyRu = document.getElementById('p4-mediaenv-copy-ru');
+    const p4MediaenvCopyEn = document.getElementById('p4-mediaenv-copy-en');
+    if (p4MediaenvCopyRu) p4MediaenvCopyRu.style.display='none';
+    if (p4MediaenvCopyEn) p4MediaenvCopyEn.style.display='block';
+    const p4ScalabilityCopyRu = document.getElementById('p4-scalability-copy-ru');
+    const p4ScalabilityCopyEn = document.getElementById('p4-scalability-copy-en');
+    if (p4ScalabilityCopyRu) p4ScalabilityCopyRu.style.display='none';
+    if (p4ScalabilityCopyEn) p4ScalabilityCopyEn.style.display='block';
+    const p4OutcomeCopyRu = document.getElementById('p4-outcome-copy-ru');
+    const p4OutcomeCopyEn = document.getElementById('p4-outcome-copy-en');
+    if (p4OutcomeCopyRu) p4OutcomeCopyRu.style.display='none';
+    if (p4OutcomeCopyEn) p4OutcomeCopyEn.style.display='block';
+    const p3calendarCopyRu = document.getElementById('p3-calendar-copy-ru');
+    const p3calendarCopyEn = document.getElementById('p3-calendar-copy-en');
+    if (p3calendarCopyRu) p3calendarCopyRu.style.display='none';
+    if (p3calendarCopyEn) p3calendarCopyEn.style.display='block';
+    const p3environmentCopyRu = document.getElementById('p3-environment-copy-ru');
+    const p3environmentCopyEn = document.getElementById('p3-environment-copy-en');
+    if (p3environmentCopyRu) p3environmentCopyRu.style.display='none';
+    if (p3environmentCopyEn) p3environmentCopyEn.style.display='block';
+    const p3tensionCopyRu = document.getElementById('p3-tension-copy-ru');
+    const p3tensionCopyEn = document.getElementById('p3-tension-copy-en');
+    if (p3tensionCopyRu) p3tensionCopyRu.style.display='none';
+    if (p3tensionCopyEn) p3tensionCopyEn.style.display='block';
+    const p5descRu = document.getElementById('p5-desc-ru');
+    const p5descEn = document.getElementById('p5-desc-en');
+    if (p5descRu) p5descRu.style.display='none';
+    if (p5descEn) p5descEn.style.display='block';
+    const p5logoDescRu = document.getElementById('p5-logo-desc-ru');
+    const p5logoDescEn = document.getElementById('p5-logo-desc-en');
+    if (p5logoDescRu) p5logoDescRu.style.display='none';
+    if (p5logoDescEn) p5logoDescEn.style.display='block';
+    const p5stoneDescRu = document.getElementById('p5-stone-desc-ru');
+    const p5stoneDescEn = document.getElementById('p5-stone-desc-en');
+    if (p5stoneDescRu) p5stoneDescRu.style.display='none';
+    if (p5stoneDescEn) p5stoneDescEn.style.display='block';
+    const p5wordmarkDescRu = document.getElementById('p5-wordmark-desc-ru');
+    const p5wordmarkDescEn = document.getElementById('p5-wordmark-desc-en');
+    if (p5wordmarkDescRu) p5wordmarkDescRu.style.display='none';
+    if (p5wordmarkDescEn) p5wordmarkDescEn.style.display='block';
+    const p5systemDescRu = document.getElementById('p5-system-desc-ru');
+    const p5systemDescEn = document.getElementById('p5-system-desc-en');
+    if (p5systemDescRu) p5systemDescRu.style.display='none';
+    if (p5systemDescEn) p5systemDescEn.style.display='block';
+    const p5packagingDescRu = document.getElementById('p5-packaging-desc-ru');
+    const p5packagingDescEn = document.getElementById('p5-packaging-desc-en');
+    if (p5packagingDescRu) p5packagingDescRu.style.display='none';
+    if (p5packagingDescEn) p5packagingDescEn.style.display='block';
+    const p5unboxingDescRu = document.getElementById('p5-unboxing-desc-ru');
+    const p5unboxingDescEn = document.getElementById('p5-unboxing-desc-en');
+    if (p5unboxingDescRu) p5unboxingDescRu.style.display='none';
+    if (p5unboxingDescEn) p5unboxingDescEn.style.display='block';
+    const p5resultDescRu = document.getElementById('p5-result-desc-ru');
+    const p5resultDescEn = document.getElementById('p5-result-desc-en');
+    if (p5resultDescRu) p5resultDescRu.style.display='none';
+    if (p5resultDescEn) p5resultDescEn.style.display='block';
+    const p5quoteEn = document.getElementById('p5-quote-en');
+    if (p5quoteEn) p5quoteEn.style.display='block';
+    const p5quoteRu = document.getElementById('p5-quote-ru');
+    if (p5quoteRu) p5quoteRu.style.display='none';
+    const p5quote2En = document.getElementById('p5-quote2-en');
+    if (p5quote2En) p5quote2En.style.display='block';
+    const p5quote2Ru = document.getElementById('p5-quote2-ru');
+    if (p5quote2Ru) p5quote2Ru.style.display='none';
+    const p3quoteEn = document.getElementById('p3-quote-en');
+    if (p3quoteEn) p3quoteEn.style.display='block';
+    const p3quoteRu = document.getElementById('p3-quote-ru');
+    if (p3quoteRu) p3quoteRu.style.display='none';
+    const p3quote2En = document.getElementById('p3-quote2-en');
+    if (p3quote2En) p3quote2En.style.display='block';
+    const p3quote2Ru = document.getElementById('p3-quote2-ru');
+    if (p3quote2Ru) p3quote2Ru.style.display='none';
+    const p7descRu = document.getElementById('p7-desc-ru');
+    const p7descEn = document.getElementById('p7-desc-en');
+    if (p7descRu) p7descRu.style.display='none';
+    if (p7descEn) p7descEn.style.display='block';
+    const p7approachCopyRu = document.getElementById('p7-approach-copy-ru');
+    const p7approachCopyEn = document.getElementById('p7-approach-copy-en');
+    if (p7approachCopyRu) p7approachCopyRu.style.display='none';
+    if (p7approachCopyEn) p7approachCopyEn.style.display='block';
+    const p7absurdityCopyRu = document.getElementById('p7-absurdity-copy-ru');
+    const p7absurdityCopyEn = document.getElementById('p7-absurdity-copy-en');
+    if (p7absurdityCopyRu) p7absurdityCopyRu.style.display='none';
+    if (p7absurdityCopyEn) p7absurdityCopyEn.style.display='block';
+    const p7immersiveCopyRu = document.getElementById('p7-immersive-copy-ru');
+    const p7immersiveCopyEn = document.getElementById('p7-immersive-copy-en');
+    if (p7immersiveCopyRu) p7immersiveCopyRu.style.display='none';
+    if (p7immersiveCopyEn) p7immersiveCopyEn.style.display='block';
+    const p7artistsCopyRu = document.getElementById('p7-artists-copy-ru');
+    const p7artistsCopyEn = document.getElementById('p7-artists-copy-en');
+    if (p7artistsCopyRu) p7artistsCopyRu.style.display='none';
+    if (p7artistsCopyEn) p7artistsCopyEn.style.display='block';
+    const p7conclusionCopyRu = document.getElementById('p7-conclusion-copy-ru');
+    const p7conclusionCopyEn = document.getElementById('p7-conclusion-copy-en');
+    if (p7conclusionCopyRu) p7conclusionCopyRu.style.display='none';
+    if (p7conclusionCopyEn) p7conclusionCopyEn.style.display='block';
+    const p8descRu = document.getElementById('p8-desc-ru');
+    const p8descEn = document.getElementById('p8-desc-en');
+    if (p8descRu) p8descRu.style.display='none';
+    if (p8descEn) p8descEn.style.display='block';
+    const p7quoteEn = document.getElementById('p7-quote-en');
+    if (p7quoteEn) p7quoteEn.style.display='block';
+    const p7quoteRu = document.getElementById('p7-quote-ru');
+    if (p7quoteRu) p7quoteRu.style.display='none';
+    const p7quote2En = document.getElementById('p7-quote2-en');
+    if (p7quote2En) p7quote2En.style.display='block';
+    const p7quote2Ru = document.getElementById('p7-quote2-ru');
+    if (p7quote2Ru) p7quote2Ru.style.display='none';
+    const p7quote3En = document.getElementById('p7-quote3-en');
+    if (p7quote3En) p7quote3En.style.display='block';
+    const p7quote3Ru = document.getElementById('p7-quote3-ru');
+    if (p7quote3Ru) p7quote3Ru.style.display='none';
+    const q2ru = document.getElementById('quote-p2-img-ru');
+    const q2en = document.getElementById('quote-p2-img-en');
+    if (q2ru) q2ru.style.display='none';
+    if (q2en) q2en.style.display='block';
+    const q2ru2 = document.getElementById('quote-p2-ru2');
+    const q2en2 = document.getElementById('quote-p2-en2');
+    if (q2ru2) q2ru2.style.display='none';
+    if (q2en2) q2en2.style.display='block';
+    const q2ru3 = document.getElementById('quote-p2-ru3');
+    const q2en3 = document.getElementById('quote-p2-en3');
+    if (q2ru3) q2ru3.style.display='none';
+    if (q2en3) q2en3.style.display='block';
+    if (descP6ru) descP6ru.style.display='none';
+    if (descP6en) descP6en.style.display='block';
+    if (descP4ru) descP4ru.style.display='none';
+    if (descP4en) descP4en.style.display='block';
+    if (descP8ru) descP8ru.style.display='none';
+    if (descP8en) descP8en.style.display='block';
+    if (skillsEn) { skillsEn.style.display='inline-block'; skillsEn.style.setProperty('font-family',"'Times New Roman',Times,serif",'important'); }
+    if (skillsRu) skillsRu.style.display='none';
+  }
+  applyLang(lang);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+  ['skills-label-en','skills-label-ru'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      el.style.setProperty('font-size', '14px', 'important');
+      el.style.setProperty('transform', 'scaleY(1.25)', 'important');
+      el.style.setProperty('transform-origin', 'top left', 'important');
+      el.style.setProperty('display', el.style.display === 'none' ? 'none' : 'inline-block', 'important');
+    }
+  });
+  ['contacts-label-en','contacts-label-ru'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      el.style.setProperty('font-size', '14px', 'important');
+      el.style.setProperty('display', el.style.display === 'none' ? 'none' : 'inline-block', 'important');
+    }
+  });
+  const btn = document.querySelector('.contacts-btn');
+  if (btn) {
+    btn.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+    btn.style.setProperty('font-size', '14px', 'important');
+  }
+  const contactsWrap = document.querySelector('.contacts-wrap');
+  if (contactsWrap) {
+    if ('IntersectionObserver' in window) {
+      const contactsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            clearTimeout(contactsOpenTimer);
+            contactsOpenTimer = setTimeout(openContacts, 1500);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.35 });
+      contactsObserver.observe(contactsWrap);
+    } else {
+      clearTimeout(contactsOpenTimer);
+      contactsOpenTimer = setTimeout(openContacts, 1500);
+    }
+  }
+  document.querySelectorAll('#page-home .mobile-block-heading').forEach(el => {
+    el.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+    el.style.setProperty('font-size', '14px', 'important');
+    el.style.setProperty('line-height', '13px', 'important');
+    el.style.setProperty('font-weight', '400', 'important');
+    el.style.setProperty('letter-spacing', 'normal', 'important');
+    el.style.setProperty('text-transform', 'uppercase', 'important');
+    el.style.setProperty('display', window.innerWidth <= 900 ? 'block' : 'none', 'important');
+  });
+  // Badge physics + rope
+  const container = document.getElementById('badgeContainer');
+  const canvas    = document.getElementById('badgeCanvas');
+  const card      = document.getElementById('badgeCard');
+  if (!container || !canvas || !card) return;
+
+  const ctx       = canvas.getContext('2d');
+  const CARD_W  = 225;
+  const L       = 130;
+  const MAX_ANG = 0.52; // ~30 degrees max swing
+
+  let angle = 0, vel = 0;
+  let W, H, ax, ay;
+
+  let dragging = false;
+  let freeX, freeY, pvx, pvy, dox, doy;
+
+  function setup() {
+    W = container.offsetWidth;
+    H = container.offsetHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+    ax = W / 2;
+    ay = 0;
+  }
+
+  function cardCenter() {
+    if (dragging) return [freeX, freeY];
+    return [ax + Math.sin(angle) * L, ay + Math.cos(angle) * L];
+  }
+
+  function tick() {
+    if (!dragging) {
+      vel += -0.003 * Math.sin(angle);
+      vel *= 0.92;
+      angle += vel;
+      if (angle >  MAX_ANG) { angle =  MAX_ANG; vel = -Math.abs(vel) * 0.3; }
+      if (angle < -MAX_ANG) { angle = -MAX_ANG; vel =  Math.abs(vel) * 0.3; }
+    }
+
+    const [cx, cy] = cardCenter();
+    card.style.left = (cx - CARD_W / 2) + 'px';
+    card.style.top  = cy + 'px';
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    const rx = cx, ry = cy + 8;
+    const mx = (ax + rx) / 2;
+    const my = (ay + ry) / 2 + 14;
+    ctx.quadraticCurveTo(mx, my, rx, ry);
+    ctx.strokeStyle = '#8C847C';
+    ctx.lineWidth   = 4;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+
+    requestAnimationFrame(tick);
+  }
+
+  function getXY(e) {
+    const r = container.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return [s.clientX - r.left, s.clientY - r.top];
+  }
+
+  function isOnCard(mx, my) {
+    const [cx, cy] = cardCenter();
+    const px = cx - CARD_W / 2, py = cy;
+    const ch = card.offsetHeight || 220;
+    return mx >= px && mx <= px + CARD_W && my >= py && my <= py + ch;
+  }
+
+  function onDown(e) {
+    const [mx, my] = getXY(e);
+    if (!isOnCard(mx, my)) return;
+    dragging = true;
+    const [cx, cy] = cardCenter();
+    freeX = cx; freeY = cy;
+    pvx = cx; pvy = cy;
+    dox = mx - cx; doy = my - cy;
+    card.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const [mx, my] = getXY(e);
+    pvx = freeX; pvy = freeY;
+    freeX = mx - dox;
+    const ch = card.offsetHeight || 220;
+    freeY = Math.max(10, Math.min(H - ch, my - doy));
+
+    const da = Math.atan2(freeX - ax, Math.max(freeY - ay, 1));
+    if (Math.abs(da) > MAX_ANG) {
+      const clampedA = Math.sign(da) * MAX_ANG;
+      const dist = Math.sqrt((freeX-ax)**2 + (freeY-ay)**2);
+      freeX = ax + Math.sin(clampedA) * dist;
+    }
+    e.preventDefault();
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    card.style.cursor = 'grab';
+    const dx = freeX - ax, dy = freeY - ay;
+    angle = Math.atan2(dx, Math.max(dy, 1));
+    angle = Math.max(-MAX_ANG, Math.min(MAX_ANG, angle));
+    vel = ((freeX - pvx) * Math.cos(angle) - (freeY - pvy) * Math.sin(angle)) / L * 0.4;
+  }
+
+  container.addEventListener('mousedown', onDown);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  container.addEventListener('touchstart', onDown, { passive: false });
+  window.addEventListener('touchmove', onMove, { passive: false });
+  window.addEventListener('touchend', onUp);
+
+  // Photo upload
+  const photoDiv = document.getElementById('badgePhoto');
+  if (photoDiv) {
+    const fi = document.createElement('input');
+    fi.type = 'file';
+    fi.accept = 'image/*';
+    fi.style.display = 'none';
+    document.body.appendChild(fi);
+    photoDiv.style.cursor = 'pointer';
+    photoDiv.addEventListener('mousedown', e => e.stopPropagation());
+    photoDiv.addEventListener('click', e => { fi.click(); e.stopPropagation(); });
+    fi.addEventListener('change', () => {
+      const f = fi.files && fi.files[0];
+      if (!f) return;
+      photoDiv.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      photoDiv.appendChild(img);
+    });
+  }
+
+  setup();
+  tick();
+  if (window.ResizeObserver) new ResizeObserver(setup).observe(container);
+  else window.addEventListener('resize', setup);
+});
+</script>
+<script>
+/* Keep block #3 height tied to the real rendered height of block #1 (ideal size) in the header stack. */
+document.addEventListener('DOMContentLoaded', () => {
+  const page = document.getElementById('page-p2');
+  if (!page) return;
+  const grid = page.querySelector('.pd-frames-grid');
+  const base = page.querySelector('.pd-follow-top .pd-frame.pd-h0') || page.querySelector('.pd-follow-top .pd-frame');
+  if (!grid || !base) return;
+
+  const apply = () => {
+    const h = base.getBoundingClientRect().height;
+    if (h && h > 0) grid.style.setProperty('--pfH', `${h}px`);
+  };
+
+  apply();
+  window.addEventListener('resize', apply);
+  if (window.ResizeObserver) new ResizeObserver(apply).observe(base);
+});
+</script>
+<script>
+(function kickGif(){
+  function run(){
+    var img = document.querySelector('.cover-b3');
+    if(!img) return;
+    var s = img.getAttribute('src');
+    // force reload once to ensure animation starts in some browsers
+    img.setAttribute('src','');
+ 
